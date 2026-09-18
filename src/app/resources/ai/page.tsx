@@ -72,7 +72,7 @@ export default function AiHubPage() {
               key={t.slug}
               href={`/resources/ai/${t.slug}`}
               className="card"
-              style={{ textDecoration: "none", display: "flex", flexDirection: "column", gap: "var(--space-2)" }}
+              style={{ textDecoration: "none", display: "flex", flexDirection: "column", gap: "var(--space-2)", overflow: "hidden" }}
             >
               <span className="label">
                 {t.level} · {t.minutes} min read

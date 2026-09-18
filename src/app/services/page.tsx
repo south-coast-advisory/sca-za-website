@@ -57,7 +57,7 @@ export default function ServicesPage() {
                   key={s.slug}
                   href={`/services/${s.slug}`}
                   className="card"
-                  style={{ textDecoration: "none", display: "flex", flexDirection: "column", gap: "var(--space-2)" }}
+                  style={{ textDecoration: "none", display: "flex", flexDirection: "column", gap: "var(--space-2)", overflow: "hidden" }}
                 >
                   <h3 style={{ fontSize: "var(--text-lg)", marginBottom: 0 }}>{s.nav}</h3>
                   <p style={{ margin: 0, fontSize: "var(--text-sm)", color: "var(--color-copy)" }}>

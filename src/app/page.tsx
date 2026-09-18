@@ -72,7 +72,16 @@ export default function HomePage() {
             {stages.map((stage) => {
               const first = services.find((s) => s.stage === stage.id);
               return (
-                <div key={stage.id} className="card" style={{ display: "flex", flexDirection: "column", gap: "var(--space-2)" }}>
+                <div
+                  key={stage.id}
+                  className="card"
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "var(--space-2)",
+                    overflow: "hidden",
+                  }}
+                >
                   <h3 style={{ marginBottom: 0 }}>{stage.title}</h3>
                   <p style={{ fontSize: "var(--text-sm)", marginBottom: "var(--space-2)" }}>
                     {stage.detail}
@@ -181,7 +190,7 @@ export default function HomePage() {
               key={s.slug}
               href={`/services/${s.slug}`}
               className="card"
-              style={{ textDecoration: "none", display: "flex", flexDirection: "column", gap: "var(--space-2)" }}
+              style={{ textDecoration: "none", display: "flex", flexDirection: "column", gap: "var(--space-2)", overflow: "hidden" }}
             >
               <h3 style={{ marginBottom: 0, fontSize: "var(--text-lg)" }}>{s.nav}</h3>
               <p style={{ margin: 0, fontSize: "var(--text-sm)", color: "var(--color-copy)" }}>

@@ -299,9 +299,17 @@ a:hover { color: var(--color-primary); }
 /* The link at the foot of a card. Borrows the Xero tile idea — a hairline
    separating media from text — and reverses it: the line sits above the
    action, which reads as the top edge of a button. */
+/* The Xero tile's grey media panel, reversed: it sits at the foot of the card,
+   runs edge to edge, and carries the hairline on top — which reads as a button
+   without pretending to be one. --card-pad lets a card with different padding
+   tell it how far to bleed. */
 .card-cta {
+  --card-pad: var(--space-6);
   margin-top: auto;
-  padding-top: var(--space-3);
+  margin-inline: calc(var(--card-pad) * -1);
+  margin-bottom: calc(var(--card-pad) * -1);
+  padding: var(--space-4) var(--card-pad);
+  background: var(--color-surface);
   border-top: 1px solid var(--color-border);
   display: flex;
   align-items: center;
@@ -311,12 +319,16 @@ a:hover { color: var(--color-primary); }
   font-size: var(--text-sm);
   font-weight: 600;
   color: var(--color-primary-mid);
+  transition:
+    background var(--dur-base) var(--ease),
+    color var(--dur-base) var(--ease);
 }
 .card-cta::after {
   content: "→";
   transition: transform var(--dur-base) var(--ease);
 }
 .card:hover .card-cta {
+  background: var(--color-surface-raised);
   color: var(--color-primary);
 }
 .card:hover .card-cta::after {
