@@ -9,6 +9,18 @@
 [build.environment]
   NODE_VERSION = "22"
 
+  # Netlify's secret scanner reads the build cache as well as the published
+  # output. Turbopack writes resolved environment values into its own cache
+  # files, so GEMINI_API_KEY appears there and fails the build.
+  #
+  # The cache is a build artefact: it is never uploaded to the CDN and no
+  # visitor can reach it. We exclude ONLY those paths, so real output — the
+  # HTML, the client bundles, the functions — is still scanned properly.
+  # Never widen this to skip the whole scan, and never add SECRETS_SCAN_ENABLED
+  # = "false": the scanner is what catches a key genuinely leaking into a
+  # client bundle.
+  SECRETS_SCAN_OMIT_PATHS = ".netlify/.next/cache/**,.next/cache/**"
+
 # The gated PDFs live OUTSIDE public/ on purpose, so the only route to them is
 # /api/documents/[slug]/download after the form is completed. Netlify therefore
 # has to be told to bundle them with the server function — without this,
