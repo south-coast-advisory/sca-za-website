@@ -325,10 +325,11 @@ a:hover { color: var(--color-primary); }
 
 /* Media panel on a card: one fixed ratio so a grid of them lines up, whatever
    the individual artwork does. */
+/* Sits at the foot of a card, so the hairline is on top of it. */
 .card-media {
   aspect-ratio: 299 / 157;
   background: var(--color-surface);
-  border-bottom: 1px solid var(--color-border);
+  border-top: 1px solid var(--color-border);
   display: flex;
   align-items: center;
   justify-content: center;
