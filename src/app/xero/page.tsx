@@ -91,10 +91,10 @@ export default function XeroPage() {
       <section className="shell section-tight">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/xero/xero-on-screen.jpg"
-          alt="The Xero dashboard shown on a laptop and a phone: bank balances, invoices owed to you, and bills to pay."
-          width={831}
-          height={536}
+          src="/xero/xero-hero.webp"
+          alt="Bank statements, receipts, an overdue invoice and a tax return being handed across a desk towards a laptop running Xero."
+          width={1800}
+          height={743}
           loading="lazy"
           style={{ width: "100%", height: "auto" }}
         />
@@ -105,7 +105,7 @@ export default function XeroPage() {
             color: "var(--color-copy-muted)",
           }}
         >
-          The same live file on your desk and ours. Xero product screens, supplied by Xero.
+          Everything that lands on your desk, in one place. Xero imagery, supplied by Xero.
         </p>
       </section>
 
@@ -226,9 +226,9 @@ export default function XeroPage() {
           {features.map((f) => (
             <div key={f.name} className="card" style={{ padding: 0, overflow: "hidden" }}>
               {f.icon && (
-                <div style={{ background: "var(--color-surface)", borderBottom: "1px solid var(--color-border)" }}>
-                  {/* Xero's own product illustrations, 299x157. Shown at their
-                      native ratio — scaled to an icon they are unreadable. */}
+                /* Fixed ratio panel so every tile in the grid lines up, whatever
+                   the individual artwork's dimensions are. */
+                <div className="card-media">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={`/xero/${f.icon}`}
@@ -236,7 +236,6 @@ export default function XeroPage() {
                     loading="lazy"
                     width={299}
                     height={157}
-                    style={{ width: "100%", height: "auto", display: "block" }}
                   />
                 </div>
               )}

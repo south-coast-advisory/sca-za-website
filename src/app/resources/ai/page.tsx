@@ -72,7 +72,7 @@ export default function AiHubPage() {
               key={t.slug}
               href={`/resources/ai/${t.slug}`}
               className="card"
-              style={{ textDecoration: "none", display: "grid", gap: "var(--space-2)", alignContent: "start" }}
+              style={{ textDecoration: "none", display: "flex", flexDirection: "column", gap: "var(--space-2)" }}
             >
               <span className="label">
                 {t.level} · {t.minutes} min read
@@ -81,9 +81,7 @@ export default function AiHubPage() {
               <p style={{ margin: 0, fontSize: "var(--text-sm)", color: "var(--color-copy)" }}>
                 {t.subtitle}
               </p>
-              <span style={{ fontSize: "var(--text-sm)", fontWeight: 600, color: "var(--color-primary-mid)" }}>
-                Read it →
-              </span>
+              <span className="card-cta">Read it</span>
             </Link>
           ))}
         </div>

@@ -75,7 +75,13 @@ export default function LibraryPage() {
                     key={d.slug}
                     href={`/resources/library/${d.slug}`}
                     className="card"
-                    style={{ textDecoration: "none", padding: 0, overflow: "hidden", display: "block" }}
+                    style={{
+                      textDecoration: "none",
+                      padding: 0,
+                      overflow: "hidden",
+                      display: "flex",
+                      flexDirection: "column",
+                    }}
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
@@ -86,7 +92,15 @@ export default function LibraryPage() {
                       loading="lazy"
                       style={{ width: "100%", height: "auto", display: "block" }}
                     />
-                    <div style={{ padding: "var(--space-4) var(--space-6) var(--space-6)", display: "grid", gap: "var(--space-2)" }}>
+                    <div
+                      style={{
+                        padding: "var(--space-4) var(--space-6) var(--space-6)",
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "var(--space-2)",
+                        flex: 1,
+                      }}
+                    >
                       <span className="label">
                         PDF · {d.pages} pages · {d.updated}
                       </span>
@@ -94,11 +108,7 @@ export default function LibraryPage() {
                       <p style={{ margin: 0, fontSize: "var(--text-sm)", color: "var(--color-copy)" }}>
                         {d.subtitle}
                       </p>
-                      <span
-                        style={{ fontSize: "var(--text-sm)", fontWeight: 600, color: "var(--color-primary-mid)" }}
-                      >
-                        Get the PDF →
-                      </span>
+                      <span className="card-cta">Get the PDF</span>
                     </div>
                   </Link>
                 ))}

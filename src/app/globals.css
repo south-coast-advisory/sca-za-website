@@ -286,6 +286,65 @@ a:hover { color: var(--color-primary); }
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   padding: var(--space-6);
+  /* Border stays exactly as it is on hover — only depth and position move. */
+  transition:
+    transform var(--dur-base) var(--ease),
+    box-shadow var(--dur-base) var(--ease);
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px hsl(var(--brand-h) 40% 20% / 0.10);
+}
+
+/* The link at the foot of a card. Borrows the Xero tile idea — a hairline
+   separating media from text — and reverses it: the line sits above the
+   action, which reads as the top edge of a button. */
+.card-cta {
+  margin-top: auto;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-primary-mid);
+}
+.card-cta::after {
+  content: "→";
+  transition: transform var(--dur-base) var(--ease);
+}
+.card:hover .card-cta {
+  color: var(--color-primary);
+}
+.card:hover .card-cta::after {
+  transform: translateX(5px);
+}
+
+/* Media panel on a card: one fixed ratio so a grid of them lines up, whatever
+   the individual artwork does. */
+.card-media {
+  aspect-ratio: 299 / 157;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: var(--space-3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .card-cta::after { transition: none; }
+  .card:hover { transform: none; }
 }
 
 .label {

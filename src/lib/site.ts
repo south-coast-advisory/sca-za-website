@@ -81,7 +81,6 @@ export const founder = {
     "Awarded the SAIPA President's Award in 2004 for his contribution to the accountancy profession in South Africa",
     "Established the practice in Amanzimtoti in 1980",
   ],
-  photo: "/team/neil-oberholzer.jpg",
 } as const;
 
 /** Proof shown in the hero. Every item must be independently checkable. */

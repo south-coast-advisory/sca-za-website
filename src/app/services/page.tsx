@@ -57,15 +57,13 @@ export default function ServicesPage() {
                   key={s.slug}
                   href={`/services/${s.slug}`}
                   className="card"
-                  style={{ textDecoration: "none", display: "grid", gap: "var(--space-2)" }}
+                  style={{ textDecoration: "none", display: "flex", flexDirection: "column", gap: "var(--space-2)" }}
                 >
                   <h3 style={{ fontSize: "var(--text-lg)", marginBottom: 0 }}>{s.nav}</h3>
                   <p style={{ margin: 0, fontSize: "var(--text-sm)", color: "var(--color-copy)" }}>
                     {s.h1}
                   </p>
-                  <span style={{ fontSize: "var(--text-sm)", fontWeight: 600, color: "var(--color-primary-mid)" }}>
-                    Read more →
-                  </span>
+                  <span className="card-cta">Read more</span>
                 </Link>
               ))}
             </div>

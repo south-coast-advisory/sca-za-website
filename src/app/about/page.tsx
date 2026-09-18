@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { AnswerBlock, Breadcrumbs, CtaBand } from "@/components/Blocks";
 import { JsonLd } from "@/components/JsonLd";
 import { founder, site } from "@/lib/site";
@@ -54,21 +53,7 @@ export default function AboutPage() {
 
       <section className="surface">
         <div className="shell section">
-          <div
-            style={{
-              display: "grid",
-              gap: "var(--space-12)",
-              gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))",
-              alignItems: "start",
-            }}
-          >
-            <Image
-              src={founder.photo}
-              alt={`${founder.name}, ${founder.role}`}
-              width={500}
-              height={500}
-              style={{ width: "100%", height: "auto" }}
-            />
+          <div style={{ width: "min(100%, 62ch)", marginInline: "auto" }}>
             <div>
               <p className="label">{founder.role}</p>
               <h2>{founder.name}</h2>

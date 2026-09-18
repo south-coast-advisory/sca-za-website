@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { LeadForm } from "@/components/LeadForm";
 import { AnswerBlock, CtaBand, FaqList, ProofRow } from "@/components/Blocks";
@@ -73,14 +72,14 @@ export default function HomePage() {
             {stages.map((stage) => {
               const first = services.find((s) => s.stage === stage.id);
               return (
-                <div key={stage.id} className="card" style={{ display: "grid", gap: "var(--space-2)" }}>
+                <div key={stage.id} className="card" style={{ display: "flex", flexDirection: "column", gap: "var(--space-2)" }}>
                   <h3 style={{ marginBottom: 0 }}>{stage.title}</h3>
                   <p style={{ fontSize: "var(--text-sm)", marginBottom: "var(--space-2)" }}>
                     {stage.detail}
                   </p>
                   {first && (
-                    <Link href={`/services/${first.slug}`} style={{ fontSize: "var(--text-sm)", fontWeight: 600 }}>
-                      {first.nav} →
+                    <Link href={`/services/${first.slug}`} className="card-cta">
+                      {first.nav}
                     </Link>
                   )}
                 </div>
@@ -130,43 +129,35 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Founder: proof with a face ── */}
+      {/* ── Founder: credentials carry this, not a photograph ── */}
       <section className="wash">
         <div className="shell section">
-          <div
-            style={{
-              display: "grid",
-              gap: "var(--space-12)",
-              gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 260px), 1fr))",
-              alignItems: "center",
-            }}
-            className="founder-grid"
-          >
-            <Image
-              src={founder.photo}
-              alt={`${founder.name}, ${founder.role} of ${site.legalName}`}
-              width={500}
-              height={500}
-              style={{ width: "100%", height: "auto" }}
-            />
-            <div>
-              <p className="label">Who you will be dealing with</p>
-              <h2>{founder.name}</h2>
-              <p>
-                Neil qualified through articles while studying after hours, and started this
-                practice in Amanzimtoti in {site.founded}. He is a member of SAICA, a past president
-                of SAIPA, and served three years on the Financial Management Accounting Committee of
-                the International Federation of Accountants.
-              </p>
-              <ul style={{ paddingLeft: "1.1rem", fontSize: "var(--text-sm)" }}>
-                <li>SAIPA President&rsquo;s Award, 2004</li>
-                <li>SAIPA membership number 115 — very nearly a founder member</li>
-                <li>{site.yearsTrading} years advising businesses on this coast</li>
-              </ul>
-              <Link href="/about" style={{ fontWeight: 600 }}>
-                More about the practice →
-              </Link>
-            </div>
+          <div style={{ width: "min(100%, 60ch)", marginInline: "auto", textAlign: "center" }}>
+            <p className="label">Who you will be dealing with</p>
+            <h2>{founder.name}</h2>
+            <p>
+              Neil qualified through articles while studying after hours, and started this practice
+              in Amanzimtoti in {site.founded}. He is a member of SAICA, a past president of SAIPA,
+              and served three years on the Financial Management Accounting Committee of the
+              International Federation of Accountants.
+            </p>
+            <ul
+              style={{
+                listStyle: "none",
+                padding: 0,
+                margin: "var(--space-6) 0",
+                fontSize: "var(--text-sm)",
+                display: "grid",
+                gap: "var(--space-2)",
+              }}
+            >
+              <li>SAIPA President&rsquo;s Award, 2004</li>
+              <li>SAIPA membership number 115 — very nearly a founder member</li>
+              <li>{site.yearsTrading} years advising businesses on this coast</li>
+            </ul>
+            <Link href="/about" style={{ fontWeight: 600 }}>
+              More about the practice →
+            </Link>
           </div>
         </div>
       </section>
@@ -190,7 +181,7 @@ export default function HomePage() {
               key={s.slug}
               href={`/services/${s.slug}`}
               className="card"
-              style={{ textDecoration: "none", display: "grid", gap: "var(--space-2)" }}
+              style={{ textDecoration: "none", display: "flex", flexDirection: "column", gap: "var(--space-2)" }}
             >
               <h3 style={{ marginBottom: 0, fontSize: "var(--text-lg)" }}>{s.nav}</h3>
               <p style={{ margin: 0, fontSize: "var(--text-sm)", color: "var(--color-copy)" }}>
