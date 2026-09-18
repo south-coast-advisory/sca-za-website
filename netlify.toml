@@ -1,0 +1,30 @@
+# Netlify configuration — South Coast Advisory
+#
+# The Next.js runtime is detected automatically; no plugin entry is needed.
+
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# The gated PDFs live OUTSIDE public/ on purpose, so the only route to them is
+# /api/documents/[slug]/download after the form is completed. Netlify therefore
+# has to be told to bundle them with the server function — without this,
+# downloads work locally and return 503 in production.
+[functions]
+  included_files = ["private-documents/**"]
+
+# Deploy previews and branch deploys must never be indexed: they are the same
+# content on a different URL, which is duplicate content pointed at the wrong
+# domain. The production context sets no such header.
+[[context.deploy-preview.headers]]
+  for = "/*"
+  [context.deploy-preview.headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[context.branch-deploy.headers]]
+  for = "/*"
+  [context.branch-deploy.headers.values]
+    X-Robots-Tag = "noindex, nofollow"

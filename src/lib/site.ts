@@ -8,7 +8,16 @@ export const site = {
   name: "South Coast Advisory",
   legalName: "South Coast Advisory (Pty) Ltd",
   shortName: "SCA",
-  url: "https://www.sca-za.com",
+  /**
+   * The public home of the site. Every canonical URL, the sitemap, the schema
+   * and llms.txt are built from this, so it is the single place the primary
+   * domain is decided.
+   *
+   * Set NEXT_PUBLIC_SITE_URL in the host's environment variables to change it
+   * without touching code — e.g. to stage on sca-za.co.za before cutting
+   * sca-za.com over. No trailing slash.
+   */
+  url: process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://www.sca-za.com",
   tagline: "Accountants and Xero partner in Amanzimtoti since 1980",
   description:
     "South Coast Advisory is an accounting practice in Amanzimtoti, KwaZulu-Natal, and a Xero Silver Partner. We handle bookkeeping, tax, payroll, company secretarial work and business valuations for businesses on the KZN South Coast.",

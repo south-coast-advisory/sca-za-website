@@ -69,21 +69,37 @@ Checks before pushing:
 
 ---
 
-## Phase 3 — Vercel
+## Phase 3 — Netlify
 
-1. Add New → Project → import the GitHub repo.
-2. Framework preset: Next.js. Root directory: leave as the repo root.
-3. Environment variables (Production **and** Preview):
+**Why Netlify and not Vercel:** Vercel's free Hobby plan is non-commercial only
+— their terms name "being paid to create or host the site" as commercial use, so
+a client's business site would require Pro at $20 per month per member. Netlify's
+free plan permits commercial client sites (you simply may not resell the hosting
+itself). The repo works on either; `netlify.toml` configures Netlify.
+
+1. Netlify → **Add new site** → **Import an existing project** → GitHub →
+   authorise → choose `sca-za-website`.
+2. Build settings are read from `netlify.toml` — leave them as detected:
+   - Build command: `npm run build`
+   - Publish directory: `.next`
+3. **Site configuration → Environment variables**, add:
 
    | Variable | Value |
    |---|---|
    | `NEXT_PUBLIC_SUPABASE_URL` | from Supabase |
    | `SUPABASE_SERVICE_ROLE_KEY` | from Supabase |
    | `DOWNLOAD_SECRET` | any long random string — generate one, do not reuse a password |
+   | `NEXT_PUBLIC_SITE_URL` | the domain the site will finally live on, e.g. `https://www.sca-za.com` |
    | `GEMINI_API_KEY` | optional; leave out until Sandy is tested |
 
-4. Deploy. You get a `*.vercel.app` URL. **The site is now live but nobody knows
-   it exists** — no DNS has changed.
+4. Deploy. You get a `*.netlify.app` URL. **The site is now live but nobody knows
+   it exists** — no DNS has changed, and deploy previews carry a `noindex`
+   header so they cannot compete with the real site in Google.
+
+> `NEXT_PUBLIC_SITE_URL` decides every canonical URL, the sitemap and the schema.
+> Set it to the domain you intend to keep, even while testing on the
+> `.netlify.app` URL — that way Google is never told the temporary address is
+> the real one.
 
 ---
 
@@ -92,7 +108,7 @@ Checks before pushing:
 Run the audit against the deployed site:
 
 ```bash
-node scripts/audit-site.mjs https://<project>.vercel.app
+node scripts/audit-site.mjs https://<site>.netlify.app
 ```
 
 Expect **0 errors**. Then by hand:
@@ -130,19 +146,34 @@ not touch a single MX record.
 
 | Record | Host | Points to |
 |---|---|---|
-| `A` | `@` | the IP Vercel shows you for the apex domain |
-| `CNAME` | `www` | the target Vercel shows you (usually `cname.vercel-dns.com`) |
+| `A` | `@` | the IP Netlify shows you for the apex domain |
+| `CNAME` | `www` | the target Netlify shows you (usually `<site>.netlify.app`) |
 
-Use whatever values the Vercel dashboard displays when you add the domain —
+Use whatever values the Netlify dashboard displays when you add the domain —
 do not copy values from an old tutorial.
 
 **Do not touch:** MX records, SPF, DKIM, DMARC, or any `autodiscover` /
 `autoconfig` records. Email continues to work throughout.
 
-In Vercel: Project → Settings → Domains → add `sca-za.com` and `www.sca-za.com`,
-and set the one you want as primary. We have built the site for
-`https://www.sca-za.com` (it is what `site.url` and every canonical says), so
-make **www** the primary and let the apex redirect to it.
+In Netlify: **Domain management → Add a domain** → add `sca-za.com` and
+`www.sca-za.com`, and set the primary. The primary must match
+`NEXT_PUBLIC_SITE_URL`, or your canonicals will point somewhere other than the
+address people actually land on.
+
+### Staging on sca-za.co.za first (optional, and low risk)
+
+`sca-za.co.za` currently 301s to `sca-za.com`. If you want to test on a real
+domain before touching the live site, point `sca-za.co.za` at Netlify instead —
+the `.com` site carries on untouched at GoDaddy. When you are satisfied, cut
+`.com` over and return `.co.za` to redirecting.
+
+Keep `NEXT_PUBLIC_SITE_URL` set to `https://www.sca-za.com` throughout, so no
+canonical ever advertises the staging domain.
+
+**On which domain should be primary:** keep `sca-za.com`. It is the older
+domain, every legacy `.html` URL belongs to it, and `.co.za` already consolidates
+into it. Reversing that would restart the authority-building on the newer
+domain for no gain.
 
 **Within 30 minutes of cutover:**
 
