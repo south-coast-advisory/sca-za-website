@@ -6,22 +6,23 @@ import { site, telHref } from "@/lib/site";
 /**
  * Sandy — the voice assistant.
  *
- * Design rules this follows:
- *  - It renders NOTHING unless /api/voice/token says Sandy is enabled, so the
- *    site is complete without a Gemini key.
- *  - The microphone is only opened after the visitor presses "Talk to Sandy".
- *  - The API key never reaches the browser: we connect with a one-use
- *    ephemeral token minted server-side.
- *  - She is labelled as AI everywhere she appears (POPIA and plain honesty).
+ * Follows the three-state voice-agent standard (Second Brain
+ * Website-Build-Standard.md):
+ *   1. a designed launcher bar, never a bare round button;
+ *   2. a branded panel that explains itself before asking for the microphone;
+ *   3. a slim live pill — the panel closes the moment she connects, so the
+ *      page under discussion is visible while you talk about it.
+ *
+ * Renders nothing unless /api/voice/token says she is enabled, the microphone
+ * is only opened on an explicit press, and the API key never reaches the
+ * browser: the session runs on a one-use ephemeral token minted server-side.
  */
 
 type Status = "idle" | "connecting" | "live" | "error";
-type Line = { who: "you" | "sandy"; text: string };
 
 const MIC_RATE = 16000; // Live API expects 16 kHz PCM in
 const OUT_RATE = 24000; // and returns 24 kHz PCM
 
-/** Float samples → base64 16-bit PCM, which is what the Live API accepts. */
 function encodePcm(samples: Float32Array): string {
   const buffer = new ArrayBuffer(samples.length * 2);
   const view = new DataView(buffer);
@@ -60,11 +61,24 @@ class Capture extends AudioWorkletProcessor {
 registerProcessor('capture', Capture);
 `;
 
+const MicIcon = ({ size = 20 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+    <rect x="9" y="2" width="6" height="12" rx="3" />
+    <path d="M5 11a7 7 0 0 0 14 0M12 18v4" />
+  </svg>
+);
+
+const MutedIcon = ({ size = 16 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+    <path d="M9 9V5a3 3 0 0 1 6 0v4M5 11a7 7 0 0 0 11 5M12 18v4M3 3l18 18" />
+  </svg>
+);
+
 export function Sandy() {
   const [enabled, setEnabled] = useState(false);
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState<Status>("idle");
-  const [lines, setLines] = useState<Line[]>([]);
+  const [muted, setMuted] = useState(false);
   const [error, setError] = useState("");
 
   const sessionRef = useRef<{ close: () => void; sendRealtimeInput: (x: unknown) => void } | null>(null);
@@ -73,10 +87,9 @@ export function Sandy() {
   const outCtxRef = useRef<AudioContext | null>(null);
   const playHeadRef = useRef(0);
 
-  // Is Sandy configured on this deployment?
   useEffect(() => {
     let cancelled = false;
-    fetch("/api/voice/token", { method: "GET" })
+    fetch("/api/voice/token")
       .then((r) => (r.ok ? r.json() : null))
       .then((j) => {
         if (!cancelled && j?.enabled) setEnabled(true);
@@ -97,6 +110,7 @@ export function Sandy() {
     outCtxRef.current?.close().catch(() => {});
     outCtxRef.current = null;
     playHeadRef.current = 0;
+    setMuted(false);
     setStatus("idle");
   }, []);
 
@@ -116,15 +130,21 @@ export function Sandy() {
     playHeadRef.current = startAt + buffer.duration;
   }, []);
 
+  /** Mute stops the microphone at the track, so nothing is transmitted. */
+  const toggleMute = useCallback(() => {
+    const track = micStreamRef.current?.getAudioTracks()[0];
+    if (!track) return;
+    track.enabled = !track.enabled;
+    setMuted(!track.enabled);
+  }, []);
+
   const start = useCallback(async () => {
     setStatus("connecting");
     setError("");
     try {
       const res = await fetch("/api/voice/token");
       const payload = await res.json().catch(() => null);
-      if (!res.ok || !payload?.enabled) {
-        throw new Error("Sandy is not available right now.");
-      }
+      if (!res.ok || !payload?.enabled) throw new Error("unavailable");
       const { token, model, systemInstruction, greeting } = payload;
 
       const { GoogleGenAI, Modality } = await import("@google/genai");
@@ -142,34 +162,28 @@ export function Sandy() {
           outputAudioTranscription: {},
         },
         callbacks: {
-          onopen: () => setStatus("live"),
+          onopen: () => {
+            setStatus("live");
+            // The panel steps aside the moment she is listening.
+            setOpen(false);
+          },
           onmessage: (message) => {
             const content = (message as { serverContent?: unknown }).serverContent as
-              | {
-                  modelTurn?: { parts?: { inlineData?: { data?: string } }[] };
-                  inputTranscription?: { text?: string };
-                  outputTranscription?: { text?: string };
-                }
+              | { modelTurn?: { parts?: { inlineData?: { data?: string } }[] } }
               | undefined;
-
             const audio = content?.modelTurn?.parts?.find((p) => p.inlineData?.data)?.inlineData?.data;
             if (audio) play(audio);
-
-            const said = content?.inputTranscription?.text;
-            const replied = content?.outputTranscription?.text;
-            if (said) setLines((l) => appendTo(l, "you", said));
-            if (replied) setLines((l) => appendTo(l, "sandy", replied));
           },
           onerror: () => {
             setError("The connection dropped. Please try again, or phone us.");
             setStatus("error");
+            setOpen(true);
           },
           onclose: () => setStatus("idle"),
         },
       });
       sessionRef.current = session as unknown as typeof sessionRef.current;
 
-      // Greet first so the visitor knows who they are talking to.
       (session as unknown as { sendClientContent: (x: unknown) => void }).sendClientContent({
         turns: [{ role: "user", parts: [{ text: `Greet the caller with exactly: "${greeting}"` }] }],
         turnComplete: true,
@@ -193,98 +207,121 @@ export function Sandy() {
         });
       };
       inCtx.createMediaStreamSource(stream).connect(node);
-      // Keep the worklet pulling without echoing the mic into the speakers.
       const mute = inCtx.createGain();
       mute.gain.value = 0;
       node.connect(mute).connect(inCtx.destination);
     } catch (e) {
-      const message =
+      setError(
         e instanceof DOMException && e.name === "NotAllowedError"
           ? "I need permission to use your microphone. You can also just phone us."
-          : "Sandy could not connect. Please phone us instead.";
-      setError(message);
+          : "Sandy could not connect. Please phone us instead.",
+      );
       setStatus("error");
+      setOpen(true);
       stop();
     }
   }, [play, stop]);
 
   if (!enabled) return null;
 
+  // ── 3. Live: the panel is gone, only this pill remains ────────────
+  if (status === "live") {
+    return (
+      <div className="sandy-pill" role="status" aria-live="polite">
+        <span className="sandy-pill__dot">{muted ? <MutedIcon /> : <MicIcon size={15} />}</span>
+        <span className="sandy-pill__status">
+          {muted ? "Muted — Sandy is waiting" : "Sandy is listening…"}
+        </span>
+        <button type="button" className="sandy-pill__btn" onClick={toggleMute}>
+          {muted ? "Unmute" : "Mute"}
+        </button>
+        <button type="button" className="sandy-pill__btn sandy-pill__btn--end" onClick={stop}>
+          End call
+        </button>
+      </div>
+    );
+  }
+
   return (
     <>
-      <button
-        type="button"
-        className="sandy-launch"
-        onClick={() => setOpen((v) => !v)}
-        aria-expanded={open}
-        aria-controls="sandy-panel"
-      >
-        {open ? "Close" : "Ask Sandy"}
-      </button>
+      {/* ── 1. Launcher ──────────────────────────────────────────────── */}
+      {!open && (
+        <button type="button" className="sandy-launch" onClick={() => setOpen(true)}>
+          <span className="sandy-launch__icon">
+            <MicIcon size={17} />
+          </span>
+          <span>
+            <span className="sandy-launch__title">Ask Sandy</span>
+            <span className="sandy-launch__sub">Xero, tax &amp; payroll — answered aloud</span>
+          </span>
+        </button>
+      )}
 
+      {/* ── 2. Panel ─────────────────────────────────────────────────── */}
       {open && (
-        <div id="sandy-panel" className="sandy-panel" role="dialog" aria-label="Ask Sandy, our AI assistant">
-          <div className="sandy-head">
-            <div>
-              <strong>Sandy</strong>
-              <span className="sandy-tag">AI assistant</span>
-            </div>
-            <p>
-              Ask about our services, Xero, or any accounting term. Sandy is an AI, not a person, and
-              does not give advice on your own tax affairs.
-            </p>
-          </div>
-
-          <div className="sandy-body">
-            {lines.length === 0 && status !== "live" && (
-              <p className="sandy-hint">
-                Press talk and ask something like &ldquo;what does moving to Xero involve?&rdquo;
-              </p>
-            )}
-            {lines.map((line, i) => (
-              <p key={i} className={line.who === "you" ? "sandy-you" : "sandy-said"}>
-                <span className="label">{line.who === "you" ? "You" : "Sandy"}</span>
-                {line.text}
-              </p>
-            ))}
-            {status === "live" && lines.length === 0 && <p className="sandy-hint">Listening…</p>}
-            {error && (
-              <p role="alert" className="sandy-error">
-                {error}
-              </p>
-            )}
-          </div>
-
-          <div className="sandy-actions">
-            {status === "live" ? (
-              <button type="button" className="btn btn-outline" onClick={stop}>
-                End conversation
+        <div className="sandy-overlay" onClick={() => setOpen(false)}>
+          <div
+            className="sandy-panel"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Ask Sandy, our AI assistant"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="sandy-panel__head">
+              <button
+                type="button"
+                className="sandy-panel__close"
+                onClick={() => setOpen(false)}
+                aria-label="Close"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true">
+                  <path d="M5 5l14 14M19 5L5 19" />
+                </svg>
               </button>
-            ) : (
+              <p className="sandy-panel__eyebrow">{site.legalName}</p>
+              <p className="sandy-panel__title">Ask Sandy</p>
+              <p className="sandy-panel__sub">
+                Your AI guide to Xero, SARS deadlines and what our services cover.
+              </p>
+            </div>
+
+            <div className="sandy-panel__body">
+              <div className="sandy-orb" aria-hidden="true">
+                <span />
+                <span />
+                <span className="sandy-orb__core">
+                  <MicIcon size={22} />
+                </span>
+              </div>
+
+              <p className={`sandy-panel__note${status === "error" ? " sandy-panel__error" : ""}`}>
+                {status === "error"
+                  ? error
+                  : status === "connecting"
+                    ? "Connecting — allow the microphone when your browser asks."
+                    : "Speak to Sandy about anything on this site: what moving to Xero involves, when a return is due, or what a term means. She is an AI assistant, not a person, and does not advise on your own tax affairs."}
+              </p>
+
               <button
                 type="button"
                 className="btn btn-primary"
                 onClick={start}
                 disabled={status === "connecting"}
+                style={{ width: "100%" }}
               >
-                {status === "connecting" ? "Connecting…" : "Talk to Sandy"}
+                {status === "connecting" ? "Connecting…" : "Start voice chat"}
               </button>
-            )}
-            <a href={telHref} className="btn btn-outline">
-              {site.phoneDisplay}
-            </a>
+            </div>
+
+            <div className="sandy-panel__foot">
+              <span>Rather speak to a person?</span>
+              <a href={telHref} style={{ fontWeight: 600 }}>
+                {site.phoneDisplay}
+              </a>
+            </div>
           </div>
         </div>
       )}
     </>
   );
-}
-
-/** Live transcription arrives in fragments; append to the current speaker's line. */
-function appendTo(lines: Line[], who: Line["who"], text: string): Line[] {
-  const last = lines[lines.length - 1];
-  if (last && last.who === who) {
-    return [...lines.slice(0, -1), { who, text: last.text + text }];
-  }
-  return [...lines, { who, text }];
 }
