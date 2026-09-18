@@ -60,7 +60,7 @@ export function TestimonialForm() {
       style={{ background: "var(--color-surface)", display: "grid", gap: "var(--space-4)" }}
     >
       <div className="field">
-        <label htmlFor="t-quote">In your own words, how have we helped?</label>
+        <label className="sr-only" htmlFor="t-quote">In your own words, how have we helped?</label>
         <textarea
           id="t-quote"
           name="quote"
@@ -69,7 +69,7 @@ export function TestimonialForm() {
           required
           minLength={20}
           maxLength={1200}
-          placeholder="What was going on before, what we did, and what changed. A few honest sentences are worth more than a paragraph of praise."
+          placeholder="Tell us how we helped *"
         />
       </div>
 
@@ -81,25 +81,25 @@ export function TestimonialForm() {
         }}
       >
         <div className="field">
-          <label htmlFor="t-name">Your name</label>
-          <input id="t-name" name="name" className="input" required autoComplete="name" />
+          <label className="sr-only" htmlFor="t-name">Your name</label>
+          <input id="t-name" name="name" className="input" required autoComplete="name"  placeholder="Name *"/>
         </div>
         <div className="field">
-          <label htmlFor="t-business">Business name</label>
-          <input id="t-business" name="business" className="input" autoComplete="organization" />
+          <label className="sr-only" htmlFor="t-business">Business name</label>
+          <input id="t-business" name="business" className="input" autoComplete="organization"  placeholder="Business name"/>
         </div>
         <div className="field">
-          <label htmlFor="t-role">Your role</label>
-          <input id="t-role" name="role" className="input" placeholder="Owner, director, trustee" />
+          <label className="sr-only" htmlFor="t-role">Your role</label>
+          <input id="t-role" name="role" className="input" placeholder="Your role" />
         </div>
         <div className="field">
-          <label htmlFor="t-town">Town</label>
-          <input id="t-town" name="town" className="input" placeholder="Amanzimtoti" />
+          <label className="sr-only" htmlFor="t-town">Town</label>
+          <input id="t-town" name="town" className="input" placeholder="Town" />
         </div>
         <div className="field">
-          <label htmlFor="t-service">Which service?</label>
+          <label className="sr-only" htmlFor="t-service">Which service?</label>
           <select id="t-service" name="service" className="select" defaultValue="">
-            <option value="">All of it</option>
+            <option value="">Which service? (or all of it)</option>
             {services.map((s) => (
               <option key={s.slug} value={s.nav}>
                 {s.nav}
@@ -108,9 +108,9 @@ export function TestimonialForm() {
           </select>
         </div>
         <div className="field">
-          <label htmlFor="t-years">How long have we worked together?</label>
+          <label className="sr-only" htmlFor="t-years">How long have we worked together?</label>
           <select id="t-years" name="yearsClient" className="select" defaultValue="">
-            <option value="">Rather not say</option>
+            <option value="">How long have we worked together?</option>
             {YEARS.map((y) => (
               <option key={y} value={y}>
                 {y}
@@ -121,9 +121,9 @@ export function TestimonialForm() {
       </div>
 
       <div className="field">
-        <label htmlFor="t-rating">Out of five, how would you rate us? (for us, not for publication)</label>
+        <label className="sr-only" htmlFor="t-rating">Out of five, how would you rate us? (for us, not for publication)</label>
         <select id="t-rating" name="rating" className="select" defaultValue="">
-          <option value="">Rather not say</option>
+          <option value="">Rate us out of five (for us, not for publication)</option>
           {[5, 4, 3, 2, 1].map((n) => (
             <option key={n} value={n}>
               {n}
@@ -140,17 +140,17 @@ export function TestimonialForm() {
         }}
       >
         <div className="field">
-          <label htmlFor="t-email">Your email</label>
-          <input id="t-email" name="email" type="email" className="input" required autoComplete="email" />
+          <label className="sr-only" htmlFor="t-email">Your email</label>
+          <input id="t-email" name="email" type="email" className="input" required autoComplete="email"  placeholder="Email *"/>
         </div>
         <div className="field">
-          <label htmlFor="t-phone">Phone (optional)</label>
-          <input id="t-phone" name="phone" type="tel" className="input" autoComplete="tel" />
+          <label className="sr-only" htmlFor="t-phone">Phone (optional)</label>
+          <input id="t-phone" name="phone" type="tel" className="input" autoComplete="tel"  placeholder="Phone"/>
         </div>
       </div>
 
       <div hidden aria-hidden="true">
-        <label htmlFor="t-company">Company</label>
+        <label className="sr-only" htmlFor="t-company">Company</label>
         <input id="t-company" name="company" tabIndex={-1} autoComplete="off" />
       </div>
 

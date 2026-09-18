@@ -78,12 +78,12 @@ export function DownloadForm({ slug, title }: { slug: string; title: string }) {
       </div>
 
       <div className="field">
-        <label htmlFor={`${slug}-name`}>Your name</label>
-        <input id={`${slug}-name`} name="name" className="input" required autoComplete="name" />
+        <label className="sr-only" htmlFor={`${slug}-name`}>Your name</label>
+        <input id={`${slug}-name`} name="name" className="input" required autoComplete="name"  placeholder="Name *"/>
       </div>
 
       <div className="field">
-        <label htmlFor={`${slug}-email`}>Email</label>
+        <label className="sr-only" htmlFor={`${slug}-email`}>Email</label>
         <input
           id={`${slug}-email`}
           name="email"
@@ -91,22 +91,22 @@ export function DownloadForm({ slug, title }: { slug: string; title: string }) {
           className="input"
           required
           autoComplete="email"
-        />
+         placeholder="Email *"/>
       </div>
 
       <div className="field">
-        <label htmlFor={`${slug}-type`}>What business or work do you do?</label>
+        <label className="sr-only" htmlFor={`${slug}-type`}>What business or work do you do?</label>
         <input
           id={`${slug}-type`}
           name="businessType"
           className="input"
           maxLength={160}
-          placeholder="Panel shop in Amanzimtoti · Body corporate trustee · Just starting out"
+          placeholder="What business or work do you do?"
         />
       </div>
 
       <div hidden aria-hidden="true">
-        <label htmlFor={`${slug}-company`}>Company</label>
+        <label className="sr-only" htmlFor={`${slug}-company`}>Company</label>
         <input id={`${slug}-company`} name="company" tabIndex={-1} autoComplete="off" />
       </div>
 

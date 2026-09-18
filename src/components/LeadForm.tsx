@@ -68,8 +68,8 @@ export function LeadForm({ source, service, compact = false, heading }: Props) {
       </div>
 
       <div className="field">
-        <label htmlFor={`${source}-name`}>Your name</label>
-        <input id={`${source}-name`} name="name" className="input" required autoComplete="name" />
+        <label className="sr-only" htmlFor={`${source}-name`}>Your name</label>
+        <input id={`${source}-name`} name="name" className="input" required autoComplete="name"  placeholder="Name *"/>
       </div>
 
       <div
@@ -80,7 +80,7 @@ export function LeadForm({ source, service, compact = false, heading }: Props) {
         }}
       >
         <div className="field">
-          <label htmlFor={`${source}-email`}>Email</label>
+          <label className="sr-only" htmlFor={`${source}-email`}>Email</label>
           <input
             id={`${source}-email`}
             name="email"
@@ -88,22 +88,22 @@ export function LeadForm({ source, service, compact = false, heading }: Props) {
             className="input"
             required
             autoComplete="email"
-          />
+           placeholder="Email *"/>
         </div>
         <div className="field">
-          <label htmlFor={`${source}-phone`}>Phone</label>
-          <input id={`${source}-phone`} name="phone" type="tel" className="input" autoComplete="tel" />
+          <label className="sr-only" htmlFor={`${source}-phone`}>Phone</label>
+          <input id={`${source}-phone`} name="phone" type="tel" className="input" autoComplete="tel"  placeholder="Phone"/>
         </div>
       </div>
 
       <div className="field">
-        <label htmlFor={`${source}-message`}>What do you need help with?</label>
-        <textarea id={`${source}-message`} name="message" rows={3} className="textarea" />
+        <label className="sr-only" htmlFor={`${source}-message`}>What do you need help with?</label>
+        <textarea id={`${source}-message`} name="message" rows={3} className="textarea"  placeholder="What do you need help with?"/>
       </div>
 
       {/* Honeypot — hidden from people, irresistible to bots */}
       <div hidden aria-hidden="true">
-        <label htmlFor={`${source}-company`}>Company</label>
+        <label className="sr-only" htmlFor={`${source}-company`}>Company</label>
         <input id={`${source}-company`} name="company" tabIndex={-1} autoComplete="off" />
       </div>
 
