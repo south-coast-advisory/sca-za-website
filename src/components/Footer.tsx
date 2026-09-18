@@ -3,11 +3,12 @@ import { services } from "@/content/services";
 import { site, telHref } from "@/lib/site";
 
 const col = { display: "grid", gap: "var(--space-2)", listStyle: "none", margin: 0, padding: 0 };
-const linkStyle = { color: "var(--color-on-dark-muted)", textDecoration: "none", fontSize: "var(--text-sm)" };
+// Colour comes from .footer-band in globals.css, not from inline styles.
+const linkStyle = { fontSize: "var(--text-sm)" };
 
 export function Footer() {
   return (
-    <footer className="ink" style={{ marginTop: "var(--space-24)" }}>
+    <footer className="footer-band" style={{ marginTop: "var(--space-24)" }}>
       <div className="shell section-tight">
         <div
           style={{
@@ -17,7 +18,7 @@ export function Footer() {
           }}
         >
           <div>
-            <p style={{ color: "var(--color-on-dark)", fontWeight: 600, marginBottom: "var(--space-2)" }}>
+            <p style={{ fontWeight: 600, marginBottom: "var(--space-2)" }}>
               {site.legalName}
             </p>
             <p style={{ fontSize: "var(--text-sm)" }}>
@@ -26,14 +27,14 @@ export function Footer() {
               {site.address.locality}, {site.address.region} {site.address.postalCode}
             </p>
             <p style={{ fontSize: "var(--text-sm)" }}>
-              <a href={telHref} style={{ color: "var(--color-on-dark)" }}>
+              <a href={telHref} style={{ fontWeight: 600 }}>
                 {site.phoneDisplay}
               </a>
             </p>
           </div>
 
           <div>
-            <p className="label" style={{ color: "var(--color-on-dark-faint)" }}>Services</p>
+            <p className="label">Services</p>
             <ul style={col}>
               {services.map((s) => (
                 <li key={s.slug}>
@@ -44,7 +45,7 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="label" style={{ color: "var(--color-on-dark-faint)" }}>Xero</p>
+            <p className="label">Xero</p>
             <ul style={col}>
               <li><Link href="/xero" style={linkStyle}>Xero Silver Partner</Link></li>
               <li><Link href="/xero#migrate" style={linkStyle}>Moving to Xero</Link></li>
@@ -59,7 +60,7 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="label" style={{ color: "var(--color-on-dark-faint)" }}>Areas served</p>
+            <p className="label">Areas served</p>
             <p style={{ fontSize: "var(--text-sm)" }}>{site.areasServed.join(" · ")}</p>
           </div>
         </div>
@@ -68,7 +69,7 @@ export function Footer() {
           style={{
             marginTop: "var(--space-8)",
             paddingTop: "var(--space-6)",
-            borderTop: "1px solid var(--color-on-dark-border)",
+            borderTop: "1px solid var(--color-footer-line)",
             display: "flex",
             flexWrap: "wrap",
             gap: "var(--space-4)",

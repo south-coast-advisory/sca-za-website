@@ -121,8 +121,11 @@ export function Sandy() {
     setError("");
     try {
       const res = await fetch("/api/voice/token");
-      if (!res.ok) throw new Error("Sandy is not available right now.");
-      const { token, model, systemInstruction, greeting } = await res.json();
+      const payload = await res.json().catch(() => null);
+      if (!res.ok || !payload?.enabled) {
+        throw new Error("Sandy is not available right now.");
+      }
+      const { token, model, systemInstruction, greeting } = payload;
 
       const { GoogleGenAI, Modality } = await import("@google/genai");
       const ai = new GoogleGenAI({ apiKey: token });

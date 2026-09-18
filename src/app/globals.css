@@ -12,25 +12,29 @@
 
 :root {
   /* ── 1. MASTER BRAND VARIABLES ← only edit here to retheme ──────── */
-  --brand-h: 239;
-  --brand-s: 71%;
+  --brand-h: 230;
+  --brand-s: 52%;
 
   /* Highlight — the logo red. One confident highlight, used sparingly. */
   --accent-h: 354;
   --accent-s: 94%;
   --accent-l: 45%;
 
-  /* ── 2. SHADE SCALE (lightness, light → dark) ───────────────────── */
+  /* ── 2. SHADE SCALE (lightness, light → dark) ─────────────────────
+     Retuned so the brand sits on a mid, lifted blue rather than a near
+     navy. Every value below is chosen to keep text contrast past WCAG AA:
+     white on --brand-600 measures 6.5:1, and --brand-700 on the off-white
+     background measures 8:1 for links.                                */
   --l-50: 97%;
-  --l-100: 92%;
-  --l-200: 80%;
-  --l-300: 66%;
-  --l-400: 50%;
-  --l-500: 42%;  /* ← exact logo blue lightness */
-  --l-600: 30%;
-  --l-700: 19%;  /* ★ PRIMARY — deep ink navy */
-  --l-800: 13%;
-  --l-900: 8%;
+  --l-100: 93%;
+  --l-200: 84%;
+  --l-300: 74%;
+  --l-400: 62%;
+  --l-500: 54%;  /* section bands and the footer */
+  --l-600: 50%;  /* ★ PRIMARY — buttons, CTA bands */
+  --l-700: 44%;  /* links and mid-tone text on light grounds */
+  --l-800: 36%;  /* hover and pressed states */
+  --l-900: 26%;  /* deepest shade */
 
   /* ── 3. COMPUTED BRAND SCALE ────────────────────────────────────── */
   --brand-50: hsl(var(--brand-h), var(--brand-s), var(--l-50));
@@ -50,9 +54,9 @@
   --accent-wash: hsl(var(--accent-h), 70%, 96%);
 
   /* ── 5. SEMANTIC ALIASES ← components use ONLY these ────────────── */
-  --color-primary: var(--brand-700);
+  --color-primary: var(--brand-600);
   --color-primary-dark: var(--brand-800);
-  --color-primary-mid: var(--brand-500);
+  --color-primary-mid: var(--brand-700);
   --color-primary-light: var(--brand-300);
   --color-primary-wash: var(--brand-50);
   --color-secondary: var(--accent);
@@ -69,6 +73,12 @@
   /* Body text — slate, never dead black */
   --color-copy: hsl(var(--brand-h), 10%, 26%);
   --color-copy-muted: hsl(var(--brand-h), 8%, 45%);
+
+  /* Footer band — a mid, lifted blue rather than the near-navy primary.
+     Derived from the brand hue so it retunes with the engine. White text on
+     it measures ~6:1, comfortably past AA for body copy. */
+  --color-footer: var(--brand-500);
+  --color-footer-line: hsl(var(--brand-h), var(--brand-s), 66%);
 
   /* On-dark helpers */
   --color-on-dark: #ffffff;
@@ -112,6 +122,11 @@
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   --dur-fast: 120ms;
   --dur-base: 260ms;
+
+  /* Scroll reveals — the CRM Solutions treatment. Long and soft: the point
+     is that nobody consciously notices it. */
+  --ease-soft: cubic-bezier(0.16, 1, 0.3, 1);
+  --reveal-duration: 1.15s;
 }
 
 /* Tailwind v4 registration — semantic tokens only */
@@ -144,7 +159,9 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  /* Lenis drives scrolling — see components/SmoothScroll.tsx. Native smooth
+     scrolling would fight it. */
+  scroll-behavior: auto;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -199,6 +216,31 @@ a:hover { color: var(--color-primary); }
   background: var(--color-primary);
   color: var(--color-on-dark);
 }
+
+/* The footer sits on the lifted blue: white headings, white links at a
+   slight step down so the headings still lead. */
+.footer-band {
+  background: var(--color-footer);
+  color: #ffffff;
+}
+.footer-band h1,
+.footer-band h2,
+.footer-band h3,
+.footer-band h4,
+.footer-band strong { color: #ffffff; }
+/* Column headings sit solid white so they lead the links beneath them. */
+.footer-band .label {
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-size: var(--text-base);
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  margin-bottom: var(--space-3);
+}
+.footer-band a { color: rgb(255 255 255 / 0.86); text-decoration: none; }
+.footer-band a:hover { color: #ffffff; text-decoration: underline; }
+.footer-band p { color: rgb(255 255 255 / 0.86); }
 .ink h1,
 .ink h2,
 .ink h3,
@@ -333,15 +375,48 @@ a:hover { color: var(--color-primary); }
 .faq-item .faq-body { padding-bottom: var(--space-4); }
 .faq-item .faq-body p { max-width: 68ch; margin-bottom: var(--space-2); }
 
-/* Entrance easing — visible resting state, animation only enhances */
-@media (prefers-reduced-motion: no-preference) {
-  .rise {
-    animation: rise var(--dur-base) var(--ease) both;
+/* ── SITE MOTION — scroll reveals ─────────────────────────────────────
+   Scoped to html.motion-ready, which the inline script in layout.tsx sets
+   before first paint. With JavaScript off it is never set, so nothing is
+   ever hidden and the page reads normally.
+
+   A direct child holding three or more items (a card grid) staggers those
+   items individually; anything else fades as one unit. Keep the >= 3
+   threshold in step with unitsOf() in SiteMotion.tsx.                   */
+html.motion-ready :is(main > section, [data-reveal]) > *:not(:has(> :nth-child(3))),
+html.motion-ready :is(main > section, [data-reveal]) > *:has(> :nth-child(3)) > * {
+  opacity: 0;
+  translate: 0 18px;
+  transition:
+    opacity var(--reveal-duration) var(--ease-soft),
+    translate var(--reveal-duration) var(--ease-soft);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+/* Doubled class so this outranks the hiding rules above. */
+html.motion-ready .reveal .is-in.is-in {
+  opacity: 1;
+  translate: none;
+}
+
+/* The header lifts off the page once scrolling starts. */
+.site-header {
+  transition: box-shadow var(--dur-base) var(--ease), background var(--dur-base) var(--ease);
+}
+html.is-scrolled .site-header {
+  background: color-mix(in srgb, var(--color-background) 88%, transparent);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 1px 0 var(--color-border), 0 10px 30px hsl(var(--brand-h) 30% 20% / 0.07);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.motion-ready :is(main > section, [data-reveal]) > *,
+  html.motion-ready :is(main > section, [data-reveal]) > * > * {
+    opacity: 1;
+    translate: none;
+    transition: none;
   }
-  @keyframes rise {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: none; }
-  }
+  .site-header { transition: none; }
 }
 
 /* ── 11b. HERO ────────────────────────────────────────────────────────

@@ -18,7 +18,9 @@ export const SANDY_MODEL = "gemini-3.8-live";
 export async function GET() {
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
-    return NextResponse.json({ enabled: false }, { status: 503 });
+    // 200, not 503: Sandy being switched off is a normal state, and a failed
+    // request would log an error in every visitor's console.
+    return NextResponse.json({ enabled: false }, { status: 200 });
   }
 
   try {
@@ -45,6 +47,6 @@ export async function GET() {
     );
   } catch (error) {
     console.error("Sandy token failed", error);
-    return NextResponse.json({ enabled: false, error: "unavailable" }, { status: 503 });
+    return NextResponse.json({ enabled: false, error: "unavailable" }, { status: 200 });
   }
 }
