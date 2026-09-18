@@ -224,18 +224,7 @@ export default function XeroPage() {
           }}
         >
           {features.map((f) => (
-            /* Reversed Xero tile: the words lead, the picture supports. */
-            <div
-              key={f.name}
-              className="card"
-              style={{ padding: 0, overflow: "hidden", display: "flex", flexDirection: "column" }}
-            >
-              <div style={{ padding: "var(--space-6) var(--space-6) var(--space-4)", flex: 1 }}>
-                <h3 style={{ fontSize: "var(--text-base)", marginBottom: "var(--space-1)" }}>{f.name}</h3>
-                <p style={{ margin: 0, fontSize: "var(--text-sm)", color: "var(--color-copy-muted)" }}>
-                  {f.detail}
-                </p>
-              </div>
+            <div key={f.name} className="card" style={{ padding: 0, overflow: "hidden" }}>
               {f.icon && (
                 /* Fixed ratio panel so every tile in the grid lines up, whatever
                    the individual artwork's dimensions are. */
@@ -250,6 +239,12 @@ export default function XeroPage() {
                   />
                 </div>
               )}
+              <div style={{ padding: "var(--space-4) var(--space-6) var(--space-6)" }}>
+                <h3 style={{ fontSize: "var(--text-base)", marginBottom: "var(--space-1)" }}>{f.name}</h3>
+                <p style={{ margin: 0, fontSize: "var(--text-sm)", color: "var(--color-copy-muted)" }}>
+                  {f.detail}
+                </p>
+              </div>
             </div>
           ))}
         </div>
