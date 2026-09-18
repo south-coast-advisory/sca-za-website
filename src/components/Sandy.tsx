@@ -280,37 +280,46 @@ export function Sandy() {
               </button>
               <p className="sandy-panel__eyebrow">{site.legalName}</p>
               <p className="sandy-panel__title">Ask Sandy</p>
-              <p className="sandy-panel__sub">
-                Your AI guide to Xero, SARS deadlines and what our services cover.
-              </p>
+              <p className="sandy-panel__sub">Your SCA-ZA 24/7 AI voice assistant</p>
             </div>
 
             <div className="sandy-panel__body">
-              <div className="sandy-orb" aria-hidden="true">
+              {/* The microphone is the control — no separate button to press. */}
+              <button
+                type="button"
+                className="sandy-orb"
+                onClick={start}
+                disabled={status === "connecting"}
+                aria-label="Start talking to Sandy"
+              >
                 <span />
                 <span />
                 <span className="sandy-orb__core">
-                  <MicIcon size={22} />
+                  <MicIcon size={24} />
                 </span>
-              </div>
+              </button>
 
-              <p className={`sandy-panel__note${status === "error" ? " sandy-panel__error" : ""}`}>
+              <p className={`sandy-orb__caption${status === "error" ? " sandy-panel__error" : ""}`}>
                 {status === "error"
                   ? error
                   : status === "connecting"
-                    ? "Connecting — allow the microphone when your browser asks."
-                    : "Speak to Sandy about anything on this site: what moving to Xero involves, when a return is due, or what a term means. She is an AI assistant, not a person, and does not advise on your own tax affairs."}
+                    ? "Connecting — allow the microphone when asked"
+                    : "Tap the microphone to start talking"}
               </p>
 
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={start}
-                disabled={status === "connecting"}
-                style={{ width: "100%" }}
-              >
-                {status === "connecting" ? "Connecting…" : "Start voice chat"}
-              </button>
+              <div className="sandy-panel__points">
+                <p>
+                  <strong>Ask Sandy about anything on this site</strong>
+                </p>
+                <ul>
+                  <li>Moving your business to Xero</li>
+                  <li>When a tax return is due</li>
+                  <li>What a business term means</li>
+                </ul>
+                <p>
+                  <strong>She does not give financial or tax advice.</strong>
+                </p>
+              </div>
             </div>
 
             <div className="sandy-panel__foot">
