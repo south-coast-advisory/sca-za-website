@@ -1,69 +1,225 @@
 import Image from "next/image";
+import Link from "next/link";
+import { LeadForm } from "@/components/LeadForm";
+import { AnswerBlock, CtaBand, FaqList, ProofRow } from "@/components/Blocks";
+import { Testimonials } from "@/components/Testimonials";
+import { JsonLd } from "@/components/JsonLd";
+import { faqsByIds } from "@/content/faq";
+import { services, stages } from "@/content/services";
+import { founder, site } from "@/lib/site";
+import { faqSchema, pageMeta } from "@/lib/seo";
 
-export default function Home() {
+export const metadata = pageMeta({
+  // Short enough that the brand suffix survives; Xero terms are targeted by /xero.
+  title: "Accountants in Amanzimtoti",
+  description:
+    "Accounting, tax, payroll and Xero support for KZN South Coast businesses. In Amanzimtoti since 1980, and a Xero Silver Partner. Book a free 20-minute call.",
+  path: "/",
+});
+
+/** Re-check for newly approved testimonials hourly. */
+export const revalidate = 3600;
+
+const homeFaqs = faqsByIds([
+  "accountant-cost",
+  "switch-accountant",
+  "xero-what-is-partner",
+  "where-are-you",
+  "shoebox",
+  "provisional-tax-who",
+]);
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      <JsonLd data={faqSchema(homeFaqs)} />
+
+      {/* ── Hero: where am I / what do I get / why care / what next ── */}
+      <section className="shell section">
+        <div className="hero-grid">
+          <div className="hero-copy">
+            <h1>Accountants and Xero partner in Amanzimtoti since 1980</h1>
+            <p className="lede">
+              We keep the books current, the returns filed and SARS satisfied for owner-managed
+              businesses along the KZN South Coast — so you can spend your time on the part of the
+              business that earns.
+            </p>
+          </div>
+          <div className="hero-form">
+            <LeadForm source="home-hero" compact />
+          </div>
+          <div className="hero-proof">
+            <ProofRow />
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      </section>
+
+      {/* ── Self-selection by stage ── */}
+      <section className="surface">
+        <div className="shell section">
+          <h2>Where is your business right now?</h2>
+          <p className="lede">
+            The right service depends less on your industry than on your stage. Start where you
+            recognise yourself.
+          </p>
+          <div
+            style={{
+              display: "grid",
+              gap: "var(--space-4)",
+              gridTemplateColumns: "repeat(auto-fit, minmax(230px, 1fr))",
+              marginTop: "var(--space-8)",
+            }}
+          >
+            {stages.map((stage) => {
+              const first = services.find((s) => s.stage === stage.id);
+              return (
+                <div key={stage.id} className="card" style={{ display: "grid", gap: "var(--space-2)" }}>
+                  <h3 style={{ marginBottom: 0 }}>{stage.title}</h3>
+                  <p style={{ fontSize: "var(--text-sm)", marginBottom: "var(--space-2)" }}>
+                    {stage.detail}
+                  </p>
+                  {first && (
+                    <Link href={`/services/${first.slug}`} style={{ fontSize: "var(--text-sm)", fontWeight: 600 }}>
+                      {first.nav} →
+                    </Link>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Xero: the differentiator ── */}
+      <section className="shell section">
+        <div
+          style={{
+            display: "grid",
+            gap: "var(--space-12)",
+            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+            alignItems: "center",
+          }}
+        >
+          <div>
+            <p className="label">Xero Silver Partner</p>
+            <h2>Your books and our books are the same file</h2>
+            <AnswerBlock>
+              South Coast Advisory is a Xero Silver Partner based in Amanzimtoti. We migrate
+              businesses from Pastel, Sage and QuickBooks to Xero, set up bank feeds and payroll,
+              train your team, and then work in the same live file you do — so nobody is emailing
+              backups or reconciling two versions of the truth.
+            </AnswerBlock>
+            <p style={{ marginTop: "var(--space-6)" }}>
+              <Link href="/xero" className="btn btn-outline">
+                How we move you to Xero
+              </Link>
+            </p>
+          </div>
+          <ul style={{ display: "grid", gap: "var(--space-4)", listStyle: "none", margin: 0, padding: 0 }}>
+            {[
+              ["Bank feeds reconcile daily", "Your position is current, not six weeks old."],
+              ["VAT and month-end stop being a scramble", "The work is already done when the deadline arrives."],
+              ["We see what you see", "Questions get answered from live data, on the phone."],
+            ].map(([title, body]) => (
+              <li key={title} className="card">
+                <h3 style={{ fontSize: "var(--text-lg)", marginBottom: "var(--space-1)" }}>{title}</h3>
+                <p style={{ marginBottom: 0, fontSize: "var(--text-sm)" }}>{body}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* ── Founder: proof with a face ── */}
+      <section className="wash">
+        <div className="shell section">
+          <div
+            style={{
+              display: "grid",
+              gap: "var(--space-12)",
+              gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 260px), 1fr))",
+              alignItems: "center",
+            }}
+            className="founder-grid"
           >
             <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
+              src={founder.photo}
+              alt={`${founder.name}, ${founder.role} of ${site.legalName}`}
+              width={500}
+              height={500}
+              style={{ width: "100%", height: "auto" }}
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            <div>
+              <p className="label">Who you will be dealing with</p>
+              <h2>{founder.name}</h2>
+              <p>
+                Neil qualified through articles while studying after hours, and started this
+                practice in Amanzimtoti in {site.founded}. He is a member of SAICA, a past president
+                of SAIPA, and served three years on the Financial Management Accounting Committee of
+                the International Federation of Accountants.
+              </p>
+              <ul style={{ paddingLeft: "1.1rem", fontSize: "var(--text-sm)" }}>
+                <li>SAIPA President&rsquo;s Award, 2004</li>
+                <li>SAIPA membership number 115 — very nearly a founder member</li>
+                <li>{site.yearsTrading} years advising businesses on this coast</li>
+              </ul>
+              <Link href="/about" style={{ fontWeight: 600 }}>
+                More about the practice →
+              </Link>
+            </div>
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* ── Proof, once real testimonials are approved ── */}
+      <Testimonials limit={3} />
+
+      {/* ── Services index ── */}
+      <section className="shell section">
+        <h2>What we do</h2>
+        <div
+          style={{
+            display: "grid",
+            gap: "var(--space-4)",
+            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+            marginTop: "var(--space-6)",
+          }}
+        >
+          {services.map((s) => (
+            <Link
+              key={s.slug}
+              href={`/services/${s.slug}`}
+              className="card"
+              style={{ textDecoration: "none", display: "grid", gap: "var(--space-2)" }}
+            >
+              <h3 style={{ marginBottom: 0, fontSize: "var(--text-lg)" }}>{s.nav}</h3>
+              <p style={{ margin: 0, fontSize: "var(--text-sm)", color: "var(--color-copy)" }}>
+                {s.h1}
+              </p>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* ── FAQ ── */}
+      <section className="surface">
+        <div className="shell section">
+          <h2>Questions we are asked most</h2>
+          <div style={{ marginTop: "var(--space-6)" }}>
+            <FaqList items={homeFaqs} />
+          </div>
+          <p style={{ marginTop: "var(--space-6)" }}>
+            <Link href="/faq" style={{ fontWeight: 600 }}>
+              All questions →
+            </Link>{" "}
+            <Link href="/glossary" style={{ fontWeight: 600, marginLeft: "var(--space-4)" }}>
+              Accounting and SARS glossary →
+            </Link>
+          </p>
+        </div>
+      </section>
+
+      <CtaBand />
+    </>
   );
 }

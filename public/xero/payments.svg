@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="299px" height="100px" viewBox="0 0 299 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 40 (33762) - http://www.bohemiancoding.com/sketch -->
+    <title>Payments</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M77.4799887,54.4732278 L26.7585561,54.4732278 C23.8944598,54.4732278 21.5505519,52.1682785 21.5505519,49.351787 L21.5505519,16.9862069 C21.5505519,14.1697154 23.8944598,11.8647661 26.7585561,11.8647661 L77.4799887,11.8647661 C80.3440851,11.8647661 82.687993,14.1697154 82.687993,16.9862069 L82.687993,49.351787 C82.687993,52.1682785 80.3440851,54.4732278 77.4799887,54.4732278 L77.4799887,54.4732278 Z" id="path-1"></path>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="61.1374411" height="42.6084616" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <polygon id="path-3" points="21.5964968 25.8036514 82.7339379 25.8036514 82.7339379 17.7789864 21.5964968 17.7789864"></polygon>
+        <mask id="mask-4" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="61.1374411" height="8.02466492" fill="white">
+            <use xlink:href="#path-3"></use>
+        </mask>
+        <rect id="path-5" x="50.155862" y="39.8455155" width="26.5194105" height="8.0241924" rx="4.0120962"></rect>
+        <mask id="mask-6" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="26.5194105" height="8.0241924" fill="white">
+            <use xlink:href="#path-5"></use>
+        </mask>
+        <path d="M58.2720425,43.3205522 L7.62012189,45.9751069 C4.75995069,46.1250021 2.29862331,43.9458824 2.15121954,41.1332508 L0.457335954,8.81202661 C0.309932176,5.99939499 2.52999611,3.57493391 5.3901673,3.42503869 L56.0420879,0.770484012 C58.9022591,0.620588791 61.3635865,2.79970854 61.5109903,5.61234017 L63.2048739,37.9335643 C63.3522777,40.7461959 61.1322137,43.170657 58.2720425,43.3205522 L58.2720425,43.3205522" id="path-7"></path>
+        <mask id="mask-8" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="62.7614105" height="45.2192088" fill="white">
+            <use xlink:href="#path-7"></use>
+        </mask>
+        <polygon id="path-9" points="61.6484096 14.5928775 61.2284559 6.57968198 0.839643963 9.74452551 1.25959775 17.757721"></polygon>
+        <mask id="mask-10" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="60.8087657" height="11.178039" fill="white">
+            <use xlink:href="#path-9"></use>
+        </mask>
+    </defs>
+    <g id="Basic-layouts-&amp;-components" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Features---Paths" transform="translate(-892.000000, -1880.000000)">
+            <g id="Payments" transform="translate(892.000000, 1880.000000)">
+                <rect id="Rectangle-5-Copy-19" fill="#F6F8F9" x="0" y="0" width="299" height="100"></rect>
+                <g id="Group-19" transform="translate(108.000000, 22.000000)">
+                    <use id="Stroke-39-Copy-2" stroke="#BFC8D1" mask="url(#mask-2)" stroke-width="2.8" fill="#FFFFFF" xlink:href="#path-1"></use>
+                    <use id="Stroke-43-Copy-2" stroke="#BFC8D1" mask="url(#mask-4)" stroke-width="2.8" fill="#FFFFFF" xlink:href="#path-3"></use>
+                    <use id="Rectangle-20-Copy-4" stroke="#BFC8D1" mask="url(#mask-6)" stroke-width="2.8" fill="#EFF1F3" xlink:href="#path-5"></use>
+                    <use id="Stroke-39-Copy-2" stroke="#BFC8D1" mask="url(#mask-8)" stroke-width="2.8" fill="#FFFFFF" xlink:href="#path-7"></use>
+                    <use id="Stroke-43-Copy-2" stroke="#BFC8D1" mask="url(#mask-10)" stroke-width="2.8" fill="#FFFFFF" xlink:href="#path-9"></use>
+                    <path d="M47.8312668,29.3570363 C48.6812561,28.1067231 50.0848231,27.254769 51.7135068,27.1694133 L51.8925458,27.1600303 C54.6558351,27.0152124 57.013731,29.1457112 57.1583948,31.9060615 C57.3033536,34.6720401 55.18555,37.0314567 52.417488,37.1765247 L52.238449,37.1859077 C50.6131189,37.2710876 49.1280402,36.5690908 48.1510922,35.4147548 C47.3011029,36.6650681 45.8975359,37.5170221 44.2688521,37.6023778 L44.0898132,37.6117609 C41.3265238,37.7565787 38.9686279,35.6260799 38.8239641,32.8657296 C38.6790053,30.099751 40.7968089,27.7403344 43.5648709,27.5952665 L43.7439099,27.5858834 C45.36924,27.5007035 46.8543187,28.2027003 47.8312668,29.3570363 Z" id="Combined-Shape" stroke="#56C209" stroke-width="1.4" fill-opacity="0.3" fill="#5BC747"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

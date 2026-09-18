@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="300px" height="101px" viewBox="0 0 300 101" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 40 (33762) - http://www.bohemiancoding.com/sketch -->
+    <title>Search</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="12.8525523 0.562009945 10.6567777 10.4096973 0.426206464 12.7343282 10.581952 15.4585891 12.7555418 25.4609065 15.3776632 15.4401893 25.269497 12.7555305 15.0885819 10.480273"></polygon>
+    </defs>
+    <g id="Basic-layouts-&amp;-components" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Features---Paths" transform="translate(-889.000000, -2790.000000)">
+            <g id="Search" transform="translate(889.000000, 2790.000000)">
+                <polygon id="Rectangle-5-Copy-26" fill="#F6F8F9" points="0.885261265 0.494840238 299.885261 0.494840238 299.885261 100.49484 0.885261265 100.49484"></polygon>
+                <path d="M155.268438,61.0951122 L140.487774,75.9008731 C138.241548,78.1509129 134.562815,78.1509129 132.314322,75.9008731 L132.314322,75.9008731 C130.06583,73.6485629 130.06583,69.9635837 132.314322,67.7112735 L146.906857,53.0939619" id="Stroke-1" stroke="#BFC8D1" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="#FFFFFF"></path>
+                <path d="M162.283933,62.5932048 C151.553728,62.5932048 142.856686,53.8791256 142.856686,43.1307018 C142.856686,32.3822779 151.553728,23.6681987 162.283933,23.6681987 C173.014138,23.6681987 181.713447,32.3822779 181.713447,43.1307018 C181.713447,53.8791256 173.014138,62.5932048 162.283933,62.5932048 Z" id="Stroke-3" stroke="#BFC8D1" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="#FFFFFF"></path>
+                <path d="M176.528143,43.1307018 C176.528143,51.0104439 170.150622,57.3987942 162.284236,57.3987942 C154.41785,57.3987942 148.04199,51.0104439 148.04199,43.1307018 C148.04199,35.2509596 154.41785,28.8626093 162.284236,28.8626093 C170.150622,28.8626093 176.528143,35.2509596 176.528143,43.1307018 L176.528143,43.1307018 Z" id="Stroke-3-Copy-2" stroke="#BFC8D1" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+                <g id="Group-8" transform="translate(161.357606, 19.042969)">
+                    <g id="Path-2">
+                        <use fill="#FFFFFF" xlink:href="#path-1"></use>
+                        <use stroke="#13B5EA" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill-opacity="0.12" fill="#13B5EA" xlink:href="#path-1"></use>
+                    </g>
+                    <g id="Group-6" transform="translate(6.192459, 6.098071)" stroke="#13B5EA" stroke-linecap="round">
+                        <path d="M6.53217979,0.138907239 L6.53217979,13.2932088" id="Line" transform="translate(6.532180, 6.716058) rotate(-315.000000) translate(-6.532180, -6.716058) "></path>
+                        <path d="M13.1197882,6.63283228 L-0.0345134154,6.63283228" id="Line" transform="translate(6.542637, 6.632832) rotate(-315.000000) translate(-6.542637, -6.632832) "></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

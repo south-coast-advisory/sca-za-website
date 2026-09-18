@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="299px" height="100px" viewBox="0 0 299 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 40 (33762) - http://www.bohemiancoding.com/sketch -->
+    <title>Sales Tax</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M45.5572,58.1603 L2.7582,58.1603 C1.5112,58.1603 0.5002,57.1493 0.5002,55.9023 L0.5002,2.7583 C0.5002,1.5113 1.5112,0.5003 2.7582,0.5003 L45.5572,0.5003 C46.8042,0.5003 47.8152,1.5113 47.8152,2.7583 L47.8152,55.9023 C47.8152,57.1493 46.8042,58.1603 45.5572,58.1603" id="path-1"></path>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="47.315" height="57.66" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <path d="M4.6134,13.591 C4.3724,13.591 4.1754,13.395 4.1754,13.153 L4.1754,4.924 C4.1754,4.682 4.3724,4.486 4.6134,4.486 L43.7014,4.486 C43.9434,4.486 44.1394,4.682 44.1394,4.924 L44.1394,13.153 C44.1394,13.395 43.9434,13.591 43.7014,13.591 L4.6134,13.591 Z" id="path-3"></path>
+    </defs>
+    <g id="Basic-layouts-&amp;-components" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Features---Paths" transform="translate(-892.000000, -2489.000000)">
+            <g id="Sales-Tax" transform="translate(892.000000, 2489.000000)">
+                <rect id="Rectangle-5-Copy-26" fill="#F6F8F9" x="0" y="0" width="299" height="100"></rect>
+                <g id="Group" transform="translate(131.000000, 21.000000)">
+                    <use id="Fill-1" stroke="#BFC8D1" mask="url(#mask-2)" stroke-width="2.8" fill="#FFFFFF" xlink:href="#path-1"></use>
+                    <g id="Stroke-7">
+                        <use fill="#FFFFFF" xlink:href="#path-3"></use>
+                        <use stroke="#56C209" stroke-width="1.4" fill-opacity="0.12" fill="#57C40A" xlink:href="#path-3"></use>
+                    </g>
+                    <path d="M5.0829,22.4029 L43.2319,22.4029 C43.7329,22.4029 44.1389,22.8089 44.1389,23.3099 L44.1389,52.7239 C44.1389,53.2249 43.7329,53.6309 43.2319,53.6309 L5.0829,53.6309 C4.5819,53.6309 4.1759,53.2249 4.1759,52.7239 L4.1759,23.3099 C4.1759,22.8089 4.5819,22.4029 5.0829,22.4029 L5.0829,22.4029 Z" id="Stroke-9" stroke="#BFC8D1" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M4.1758,38 L44.1398,38" id="Stroke-11" stroke="#BFC8D1" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M4.1758,45.7 L34,45.7" id="Stroke-13" stroke="#BFC8D1" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M24,22.4029 L24,53.6309" id="Stroke-15" stroke="#BFC8D1" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M34,22.4029 L34,53.6309" id="Stroke-17" stroke="#BFC8D1" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M14,22.4029 L14,53.6309" id="Stroke-19" stroke="#BFC8D1" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M4.1758,30 L44.1398,30" id="Stroke-21" stroke="#BFC8D1" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M43.084,53.614 L34,53.614 L34,38 L43.991,38 L43.991,52.707 C43.991,53.208 43.585,53.614 43.084,53.614 L43.084,53.614 Z" id="Stroke-29" stroke="#BFC8D1" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M36.6265,45 L41.2725,45" id="Fill-31" fill="#FFFFFF"></path>
+                    <path d="M37.1331309,45.615713 L41.1331309,45.615713" id="Stroke-33" stroke="#9FACBA" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M38,48 L38,43.5009" id="Fill-35" fill="#FFFFFF"></path>
+                    <path d="M39.14884,47.6592336 L39.14884,43.6592336" id="Stroke-37" stroke="#9FACBA" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M1.5,16.7 L47,16.7" id="Stroke-41" stroke="#BFC8D1" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
