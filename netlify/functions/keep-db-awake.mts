@@ -8,7 +8,7 @@ import type { Config } from "@netlify/functions";
  * tried to book a call simply left. This runs every day, reads one count through the site's own
  * health endpoint, and shouts in the function log if it fails.
  *
- * Same pattern as Yasuke Safety's keep-db-awake, which was written for the identical failure.
+ * Standard house pattern for any project on a free database tier.
  */
 export default async () => {
   const base = process.env.SITE_URL ?? process.env.URL ?? "https://sca-za.netlify.app";

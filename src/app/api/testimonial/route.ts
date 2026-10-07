@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getServiceClient } from "@/lib/supabase";
+import { notify } from "@/lib/notify";
 
 export const runtime = "nodejs";
 
@@ -63,18 +64,13 @@ export async function POST(request: Request) {
     );
   }
 
+  // A client who has taken the trouble to write a testimonial must never be
+  // told it failed. Store it and email it; either one succeeding is enough.
   const supabase = getServiceClient();
-  if (!supabase) {
-    return NextResponse.json(
-      {
-        ok: false,
-        error: "Our form is not connected yet. Please phone 031 903 4787 — we would love to hear it.",
-      },
-      { status: 503 },
-    );
-  }
+  let stored = false;
 
-  const { error } = await supabase.from("testimonials").insert({
+  if (supabase) {
+    const { error } = await supabase.from("testimonials").insert({
     name,
     business: body.business?.trim() || null,
     role: body.role?.trim() || null,
@@ -85,12 +81,37 @@ export async function POST(request: Request) {
     quote,
     contact_email: email,
     contact_phone: body.phone?.trim() || null,
-    consent_publish_at: new Date().toISOString(),
-    status: "pending",
+      consent_publish_at: new Date().toISOString(),
+      status: "pending",
+    });
+    if (error) console.error("testimonial insert failed:", error.message);
+    else stored = true;
+  }
+
+  const emailed = await notify({
+    subject: stored
+      ? `Testimonial from ${name} — awaiting approval`
+      : `Testimonial from ${name} (NOT saved to database)`,
+    rows: [
+      ["Name", name],
+      ["Business", body.business?.trim() ?? ""],
+      ["Role", body.role?.trim() ?? ""],
+      ["Town", body.town?.trim() ?? ""],
+      ["Service", body.service ?? ""],
+      ["Client for", body.yearsClient ?? ""],
+      ["Rating", rating ? `${rating} out of 5` : ""],
+      ["Email", email],
+      ["Phone", body.phone?.trim() ?? ""],
+      ...(stored
+        ? ([["Next step", "Approve it in Supabase after confirming with the client."]] as [string, string][])
+        : ([["Warning", "The database was unreachable — this email is the only record."]] as [string, string][])),
+    ],
+    body: quote,
+    replyTo: email,
   });
 
-  if (error) {
-    console.error("testimonial insert failed", error.message);
+  if (!stored && !emailed) {
+    console.error("testimonial lost: database and email both unavailable");
     return NextResponse.json(
       { ok: false, error: "We could not save that. Please phone 031 903 4787." },
       { status: 500 },

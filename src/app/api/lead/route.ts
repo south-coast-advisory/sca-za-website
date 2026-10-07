@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getServiceClient } from "@/lib/supabase";
+import { notify } from "@/lib/notify";
 
 export const runtime = "nodejs";
 
@@ -47,30 +48,42 @@ export async function POST(request: Request) {
     );
   }
 
+  // Two independent attempts: store it, and send it. An enquiry survives either
+  // one working. The database being asleep must never lose a lead again.
   const supabase = getServiceClient();
-  if (!supabase) {
-    // Not configured yet: do not pretend it was saved.
-    return NextResponse.json(
-      {
-        ok: false,
-        error: "Our form is not connected yet. Please phone 031 903 4787 and we will help right away.",
-      },
-      { status: 503 },
-    );
+  let stored = false;
+
+  if (supabase) {
+    const { error } = await supabase.from("leads").insert({
+      name,
+      email,
+      phone: phone || null,
+      message: body.message?.trim() || null,
+      service: body.service || null,
+      source: body.source || "website",
+      consent_at: new Date().toISOString(),
+    });
+    if (error) console.error("lead insert failed:", error.message);
+    else stored = true;
   }
 
-  const { error } = await supabase.from("leads").insert({
-    name,
-    email,
-    phone: phone || null,
-    message: body.message?.trim() || null,
-    service: body.service || null,
-    source: body.source || "website",
-    consent_at: new Date().toISOString(),
+  const emailed = await notify({
+    subject: stored ? `Website enquiry — ${name}` : `Website enquiry — ${name} (NOT saved to database)`,
+    rows: [
+      ["Name", name],
+      ["Email", email],
+      ["Phone", phone],
+      ["Service", body.service ?? ""],
+      ["Page", body.source ?? "website"],
+      ...(stored ? [] : ([["Warning", "The database was unreachable — this email is the only record."]] as [string, string][])),
+    ],
+    body: body.message?.trim(),
+    replyTo: email,
   });
 
-  if (error) {
-    console.error("lead insert failed", error.message);
+  if (!stored && !emailed) {
+    // Nothing captured it. Say so honestly rather than claiming success.
+    console.error("lead lost: database and email both unavailable");
     return NextResponse.json(
       { ok: false, error: "We could not save that. Please phone 031 903 4787." },
       { status: 500 },
