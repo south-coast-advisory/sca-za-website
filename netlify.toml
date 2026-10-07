@@ -28,6 +28,10 @@
 [functions]
   included_files = ["private-documents/**"]
 
+  # Holds keep-db-awake.mts, the scheduled job that pings /api/health/db daily so the
+  # free Supabase project is never paused for inactivity.
+  directory = "netlify/functions"
+
 # Deploy previews and branch deploys must never be indexed: they are the same
 # content on a different URL, which is duplicate content pointed at the wrong
 # domain. The production context sets no such header.
