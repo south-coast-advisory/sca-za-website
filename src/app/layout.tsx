@@ -45,7 +45,13 @@ export const metadata: Metadata = {
     template: "%s | South Coast Advisory",
   },
   description: site.description,
-  icons: { icon: "/brand/favicon-192.png", apple: "/brand/favicon-512.png" },
+  icons: {
+    icon: [
+      { url: "/brand/favicon.svg", type: "image/svg+xml" },
+      { url: "/brand/favicon-192.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: "/brand/favicon-512.png",
+  },
   openGraph: { siteName: site.name, locale: "en_ZA", type: "website" },
 };
 

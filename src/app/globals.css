@@ -557,6 +557,12 @@ html.is-scrolled .site-header {
 }
 .site-header__logo { display: block; flex-shrink: 0; }
 .site-header__logo img { width: auto; height: 44px; }
+.site-footer__logo { display: inline-block; margin-bottom: var(--space-8); }
+.site-footer__logo img { width: auto; height: 64px; }
+/* Between the phone layout and wide desktop, logo + nav + actions share one row. */
+@media (max-width: 1140px) {
+  .site-header__logo img { height: 38px; }
+}
 .header-actions { display: flex; gap: var(--space-3); align-items: center; }
 
 /* One <details> serves both layouts. Above 880px it is forced open visually:
@@ -615,7 +621,9 @@ html.is-scrolled .site-header {
 }
 @media (max-width: 480px) {
   .header-phone { display: none; }
-  .site-header__logo img { height: 38px; }
+  .site-header__inner { gap: var(--space-4); }
+  .site-header__logo img { height: 30px; }
+  .site-footer__logo img { height: 52px; }
 }
 
 /* ── 13. SANDY, THE VOICE ASSISTANT ─────────────────────────────────

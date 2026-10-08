@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { services } from "@/content/services";
 import { site, telHref } from "@/lib/site";
@@ -10,6 +11,15 @@ export function Footer() {
   return (
     <footer className="footer-band" style={{ marginTop: "var(--space-24)" }}>
       <div className="shell section-tight">
+        <Link href="/" aria-label={`${site.name} home`} className="site-footer__logo">
+          <Image
+            src="/brand/logo-white.svg"
+            alt={`${site.legalName} logo`}
+            width={628}
+            height={124}
+            unoptimized
+          />
+        </Link>
         <div
           style={{
             display: "grid",

@@ -8,11 +8,12 @@ export function Header() {
       <div className="shell site-header__inner">
         <Link href="/" aria-label={`${site.name} home`} className="site-header__logo">
           <Image
-            src="/brand/logo.png"
+            src="/brand/logo-compact.svg"
             alt={`${site.legalName} logo`}
-            width={373}
-            height={108}
+            width={678}
+            height={124}
             priority
+            unoptimized
           />
         </Link>
 
