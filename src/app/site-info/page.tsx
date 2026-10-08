@@ -121,6 +121,7 @@ const fromNeil = [
   "The email address enquiries should go to",
   "Confirmation that the Xero partner tier is still Silver",
   "Access to the Google Business Profile, for the review link",
+  "Delegate access to the GoDaddy account, for the domain and email settings",
 ];
 
 const switchOn = [
