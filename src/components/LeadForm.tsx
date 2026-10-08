@@ -59,7 +59,7 @@ export function LeadForm({ source, service, compact = false, heading }: Props) {
       className={compact ? "card lead-form lead-form--compact" : "card lead-form"}
       style={{ background: "var(--color-surface)", display: "grid", gap: compact ? "var(--space-3)" : "var(--space-4)" }}
     >
-      <h3 style={{ marginBottom: 0 }}>{heading ?? "Book a free 20-minute call"}</h3>
+      <h3 style={{ marginBottom: 0 }}>{heading ?? "Book a free 20-minute consultation"}</h3>
 
       <div className="field">
         <label className="sr-only" htmlFor={`${source}-name`}>Your name</label>
@@ -93,8 +93,8 @@ export function LeadForm({ source, service, compact = false, heading }: Props) {
       </div>
 
       <div className="field">
-        <label className="sr-only" htmlFor={`${source}-message`}>What do you need help with?</label>
-        <textarea id={`${source}-message`} name="message" rows={compact ? 2 : 3} className="textarea"  placeholder="What do you need help with?"/>
+        <label className="sr-only" htmlFor={`${source}-message`}>Where is the pressure — tax, cash flow, reporting?</label>
+        <textarea id={`${source}-message`} name="message" rows={compact ? 2 : 3} className="textarea"  placeholder="Where is the pressure? Tax, cash flow, reporting…"/>
       </div>
 
       {/* Honeypot — hidden from people, irresistible to bots */}
@@ -112,7 +112,7 @@ export function LeadForm({ source, service, compact = false, heading }: Props) {
       </label>
 
       <button type="submit" className="btn btn-primary" disabled={state === "sending"}>
-        {state === "sending" ? "Sending…" : "Book my call"}
+        {state === "sending" ? "Sending…" : "Request my consultation"}
       </button>
 
       {state === "error" && (

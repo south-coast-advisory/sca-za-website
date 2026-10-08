@@ -35,7 +35,7 @@ export default function AboutPage() {
 
       <section className="shell section">
         <Breadcrumbs trail={trail} />
-        <h1>A practice on this coast since 1980</h1>
+        <h1>An accounting practice on the KZN South Coast since 1980</h1>
         <p className="lede">
           Forty-six years in one town means our clients&rsquo; businesses, and often their
           children&rsquo;s businesses, have been through every SARS regime, every recession and every

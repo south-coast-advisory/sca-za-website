@@ -69,10 +69,11 @@ export default function XeroPage() {
               height={96}
               style={{ width: "66px", height: "auto", marginBottom: "var(--space-4)" }}
             />
-            <h1>The South Coast&rsquo;s Xero partner</h1>
+            <h1>Xero Silver Partner on the KZN South Coast</h1>
             <p className="lede">
-              Moving to Xero is not really a software project. It is the point at which you stop
-              finding out how the business did two months after the fact.
+              Moving to Xero is not a software project. It closes the gap between trading and knowing
+              your numbers: daily bank feeds, live debtors and management accounts on demand, not two
+              months after month-end.
             </p>
             <div style={{ marginTop: "var(--space-8)" }}>
               <AnswerBlock>
@@ -83,7 +84,7 @@ export default function XeroPage() {
               </AnswerBlock>
             </div>
           </div>
-          <LeadForm source="xero-hero" service="xero" heading="Book a free Xero call" compact />
+          <LeadForm source="xero-hero" service="xero" heading="Book a free Xero consultation" compact />
         </div>
       </section>
 
@@ -114,7 +115,7 @@ export default function XeroPage() {
         <div className="shell section">
           <h2>What &ldquo;Silver Partner&rdquo; actually means</h2>
           <p className="lede">
-            Partner status is earned through client work, not bought. Here is the plain version.
+            Partner status is earned through certified staff and active client files, not bought.
           </p>
           <ul
             style={{
@@ -194,7 +195,7 @@ export default function XeroPage() {
         <div className="shell section">
           <h2>Xero in South Africa, specifically</h2>
           <p className="lede">
-            Most Xero material is written for Britain or Australia. These are the answers for here.
+            Most Xero material is written for Britain or Australia. These answers apply South African VAT, payroll and SARS rules.
           </p>
           <div style={{ marginTop: "var(--space-6)" }}>
             {southAfricanFacts.map((f) => (
@@ -213,7 +214,7 @@ export default function XeroPage() {
       <section className="shell section">
         <h2>What you actually get in Xero</h2>
         <p className="lede">
-          The features that matter to an owner-managed South African business, in plain terms.
+          The features that matter to an owner-managed South African business.
         </p>
         <div
           style={{
@@ -302,7 +303,7 @@ export default function XeroPage() {
 
       <CtaBand
         title="Find out whether Xero is right for you"
-        body="Twenty minutes on the phone is usually enough to tell. If it is not right for your business, we will say so."
+        body="Twenty minutes covers your transaction volume, bank, payroll and current system: enough to say whether migration will pay for itself. If it will not, we will say so."
       />
     </>
   );

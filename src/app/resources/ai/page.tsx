@@ -8,7 +8,7 @@ import { site } from "@/lib/site";
 export const metadata = pageMeta({
   title: "AI for South African Business Owners",
   description:
-    "Honest tutorials on using AI in a South African business: where it helps, what you must never paste into a chatbot, and prompts that actually work.",
+    "Practical tutorials on using AI in a South African business: where it helps, what you must never paste into a chatbot, and prompts that actually work.",
   path: "/resources/ai",
 });
 

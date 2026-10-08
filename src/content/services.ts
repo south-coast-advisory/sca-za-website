@@ -24,7 +24,7 @@ export const services: Service[] = [
     slug: "accounting-bookkeeping",
     nav: "Accounting & bookkeeping",
     title: "Bookkeeping & Accounting Services, Amanzimtoti",
-    h1: "Books that are current, reconciled and ready for SARS",
+    h1: "Reconciled books, monthly management accounts, audit-ready year-ends",
     description:
       "Monthly bookkeeping, management accounts and annual financial statements for businesses on the KZN South Coast. Run on Xero by a Xero Silver Partner in Amanzimtoti.",
     answer:
@@ -52,7 +52,7 @@ export const services: Service[] = [
     slug: "tax",
     nav: "Tax",
     title: "Tax Practitioner Services, KZN South Coast",
-    h1: "Tax returns filed correctly, on time, every time",
+    h1: "Income tax, provisional tax and VAT, filed ahead of every SARS deadline",
     description:
       "Company, individual and provisional tax returns, VAT and SARS disputes, handled by a registered tax practitioner in Amanzimtoti serving the KZN South Coast.",
     answer:
@@ -79,7 +79,7 @@ export const services: Service[] = [
     slug: "payroll",
     nav: "Payroll",
     title: "Payroll Services & EMP201 Submissions",
-    h1: "Payroll that SARS never queries",
+    h1: "Payroll, PAYE and EMP201 / EMP501 compliance in one monthly service",
     description:
       "Outsourced payroll for South Coast employers: payslips, EMP201 and EMP501 submissions, IRP5 certificates, UIF and COIDA returns.",
     answer:
@@ -107,7 +107,7 @@ export const services: Service[] = [
     slug: "company-secretarial",
     nav: "Company secretarial",
     title: "CIPC & Company Secretarial Services",
-    h1: "Your company kept in good standing at CIPC",
+    h1: "CIPC annual returns, beneficial ownership and statutory records, kept current",
     description:
       "Company registrations, CIPC annual returns, beneficial ownership filings, director changes and statutory records for South Coast businesses.",
     answer:
@@ -135,7 +135,7 @@ export const services: Service[] = [
     slug: "advisory-cfo",
     nav: "Advisory & virtual CFO",
     title: "Virtual CFO & Business Advisory, KZN",
-    h1: "The numbers conversation you are not having",
+    h1: "A part-time CFO: cash flow forecasting, budgets and margin analysis",
     description:
       "Management accounts, cash flow forecasting, budgets and board packs for owner-managed businesses on the KZN South Coast.",
     answer:
@@ -162,7 +162,7 @@ export const services: Service[] = [
     slug: "business-valuations",
     nav: "Business valuations",
     title: "Business Valuation Services, Durban South",
-    h1: "What your business is actually worth, and why",
+    h1: "Independent business valuations that stand up to a buyer, a bank or a court",
     description:
       "Independent business valuations for sales, buy-outs, disputes, estates and funding, prepared by a chartered accountant in Amanzimtoti.",
     answer:
@@ -189,7 +189,7 @@ export const services: Service[] = [
     slug: "hr",
     nav: "HR & employment",
     title: "HR & Employment Support for Small Businesses",
-    h1: "Employment admin that keeps you out of the CCMA",
+    h1: "Employment contracts, workplace policies and BCEA-compliant records",
     description:
       "Employment contracts, policies, payroll-linked HR records and disciplinary support for small employers on the KZN South Coast.",
     answer:
@@ -216,7 +216,7 @@ export const services: Service[] = [
     slug: "property-management",
     nav: "Property management",
     title: "Property & Body Corporate Management",
-    h1: "Trust accounting and administration for property owners",
+    h1: "Levy administration and trust accounting for sectional title schemes and HOAs",
     description:
       "Sectional title, home owners association and rental administration with proper trust accounting, on the KZN South Coast.",
     answer:
@@ -245,7 +245,7 @@ export const serviceBySlug = (slug: string) => services.find((s) => s.slug === s
 
 export const stages = [
   { id: "starting", title: "Starting out", detail: "Registering the company, first SARS registrations, getting the books set up properly from day one." },
-  { id: "growing", title: "Growing", detail: "Staff on payroll, VAT registered, and a bookkeeping load that has outgrown a spreadsheet." },
-  { id: "established", title: "Established", detail: "You need management accounts, forecasts and someone to challenge the numbers with you." },
-  { id: "selling", title: "Selling or exiting", detail: "Valuation, clean books, and a business that survives due diligence." },
+  { id: "growing", title: "Growing", detail: "Staff on payroll, VAT registered, and a transaction volume that has outgrown a spreadsheet." },
+  { id: "established", title: "Established", detail: "Management accounts, cash flow forecasts, budget versus actual, and a qualified accountant to challenge the numbers with you." },
+  { id: "selling", title: "Selling or exiting", detail: "An independent valuation, normalised earnings, and books that withstand a buyer's due diligence." },
 ] as const;

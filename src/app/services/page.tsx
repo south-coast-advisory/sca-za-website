@@ -22,7 +22,7 @@ export default function ServicesPage() {
       />
       <section className="shell section">
         <Breadcrumbs trail={[{ name: "Home", path: "/" }, { name: "Services", path: "/services" }]} />
-        <h1>Accounting, tax and payroll, handled in Toti since 1980</h1>
+        <h1>Accounting, tax and advisory services in Amanzimtoti since 1980</h1>
         <p className="lede">
           Eight services, one team, one set of books. You are not handed between a bookkeeper, a tax
           consultant and a payroll bureau who never speak to each other.

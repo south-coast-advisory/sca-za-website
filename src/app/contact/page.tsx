@@ -36,10 +36,11 @@ export default function ContactPage() {
           }}
         >
           <div>
-            <h1>Talk to us</h1>
+            <h1>Talk to an accountant in Amanzimtoti</h1>
             <p className="lede">
-              Twenty minutes, no charge. Tell us what is going on and we will tell you what we would
-              do first — even if that turns out not to involve us.
+              A free 20-minute consultation. Tell us your stage of growth and where the constraint
+              sits — a SARS backlog, tight cash flow, books that lag the business, or a sale on the
+              horizon. We will tell you what to fix first, and whether we are the right firm to do it.
             </p>
 
             <div style={{ marginTop: "var(--space-8)", display: "grid", gap: "var(--space-6)" }}>

@@ -43,9 +43,9 @@ export default function HomePage() {
           <div className="hero-copy">
             <h1>Accountants and Xero partner in Amanzimtoti since 1980</h1>
             <p className="lede">
-              We keep the books current, the returns filed and SARS satisfied for owner-managed
-              businesses along the KZN South Coast — so you can spend your time on the part of the
-              business that earns.
+              Bookkeeping, tax, payroll and management reporting for owner-managed businesses on the
+              KZN South Coast: reconciled monthly in Xero, compliant with SARS and CIPC, and reported
+              in time to act on.
             </p>
           </div>
           <div className="hero-form">
@@ -61,10 +61,10 @@ export default function HomePage() {
       {/* ── Self-selection by stage ── */}
       <section className="surface">
         <div className="shell section">
-          <h2>Where is your business right now?</h2>
+          <h2>Where is your business in its life cycle?</h2>
           <p className="lede">
-            The right service depends less on your industry than on your stage. Start where you
-            recognise yourself.
+            What a business needs from its accountant changes with each stage, from statutory set-up to
+            exit. Start with the one that describes you.
           </p>
           <div
             style={{
@@ -181,7 +181,7 @@ export default function HomePage() {
 
       {/* ── Services index ── */}
       <section className="shell section">
-        <h2>What we do</h2>
+        <h2>Accounting, tax and advisory services</h2>
         <div
           style={{
             display: "grid",
@@ -209,7 +209,7 @@ export default function HomePage() {
       {/* ── FAQ ── */}
       <section className="surface">
         <div className="shell section">
-          <h2>Questions we are asked most</h2>
+          <h2>Fees, SARS and Xero: the questions we are asked most</h2>
           <div style={{ marginTop: "var(--space-6)" }}>
             <FaqList items={homeFaqs} />
           </div>

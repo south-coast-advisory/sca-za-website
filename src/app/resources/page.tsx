@@ -41,7 +41,7 @@ const live = [
   },
   {
     href: "/faq",
-    title: "Questions, answered properly",
+    title: "Accounting, tax and SARS questions, answered",
     detail:
       "Provisional tax, VAT registration, EMP201 penalties, CIPC annual returns and what an accountant actually costs.",
   },
@@ -109,8 +109,8 @@ export default function ResourcesPage() {
       </section>
 
       <CtaBand
-        title="Want something specific?"
-        body="Tell us what you are trying to work out and we will point you at the right answer, or write it."
+        title="A question this library does not answer?"
+        body="Send it: a tax treatment, a SARS letter, a Xero setting. We will answer it, and if other owners are asking the same, publish the answer here."
       />
     </>
   );

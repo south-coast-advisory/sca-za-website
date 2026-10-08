@@ -121,8 +121,8 @@ export function GlossaryLinks({ ids }: { ids: string[] }) {
 
 /** The single repeated call to action. Same job everywhere. */
 export function CtaBand({
-  title = "Let's start with a conversation",
-  body = "Twenty minutes, no charge. Bring your last set of figures, or none at all.",
+  title = "Find out where the numbers are holding you back",
+  body = "A free 20-minute consultation on compliance, cash flow and reporting, and what to fix first. Bring your latest management accounts or trial balance if you have them.",
 }: {
   title?: string;
   body?: string;

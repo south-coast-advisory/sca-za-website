@@ -187,7 +187,7 @@ export default function DeadlinesPage() {
       </section>
 
       <CtaBand
-        title="Let us carry the calendar"
+        title="Hand the compliance calendar to us"
         body="Every client's deadlines sit in our diary, not their heads. That is most of what a monthly fee buys."
       />
     </>

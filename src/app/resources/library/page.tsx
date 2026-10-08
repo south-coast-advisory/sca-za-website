@@ -120,7 +120,7 @@ export default function LibraryPage() {
 
       <CtaBand
         title="Would you rather we just did it?"
-        body="Every checklist here is work we do for clients every month. Twenty minutes to find out what that would cost."
+        body="Every checklist here is work we carry out for clients each month. A free 20-minute consultation will scope and price it for your business."
       />
     </>
   );

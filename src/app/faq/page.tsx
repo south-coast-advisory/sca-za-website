@@ -22,7 +22,7 @@ export default function FaqPage() {
 
       <section className="shell section">
         <Breadcrumbs trail={trail} />
-        <h1>Questions, answered properly</h1>
+        <h1>Accounting, tax and SARS questions, answered</h1>
         <p className="lede">
           {faqs.length} questions we are actually asked, answered the way we would answer them on
           the phone. Where a rule changes with the Budget, we say so rather than printing a figure
@@ -72,8 +72,8 @@ export default function FaqPage() {
       })}
 
       <CtaBand
-        title="Still not sure?"
-        body="Ask us directly. Twenty minutes on the phone beats an hour of reading."
+        title="Your situation not covered here?"
+        body="Most answers turn on your year-end, VAT category and structure. A free 20-minute consultation applies them to your business."
       />
     </>
   );
