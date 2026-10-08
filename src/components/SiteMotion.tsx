@@ -11,8 +11,25 @@ const MAX_DELAY_MS = 570;
 /** A unit reveals once its top edge is this far into the viewport. */
 const TRIGGER_RATIO = 0.9;
 
+/** Pages whose H2s are clause or group labels, not section openers: no brand mark. */
+const NO_SECTION_MARK = ["/privacy", "/terms", "/faq"];
+
 export function SiteMotion() {
   const pathname = usePathname();
+
+  // The logo's red ledger square on the first H2 of each section — once per
+  // section, so it opens the section rather than bulleting every heading.
+  useEffect(() => {
+    if (NO_SECTION_MARK.some((p) => pathname === p || pathname.startsWith(`${p}/`))) return;
+    const marked: Element[] = [];
+    for (const section of document.querySelectorAll("main > section")) {
+      const h2 = section.querySelector("h2");
+      if (!h2) continue;
+      h2.classList.add("section-mark");
+      marked.push(h2);
+    }
+    return () => marked.forEach((h2) => h2.classList.remove("section-mark"));
+  }, [pathname]);
 
   useEffect(() => {
     const root = document.documentElement;

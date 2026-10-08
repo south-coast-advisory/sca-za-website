@@ -189,6 +189,22 @@ h4 {
 }
 
 h1 { font-size: var(--text-4xl); }
+
+/* Section mark: the logo's red ledger square (white corner bracket) set
+   before the first H2 of a section, raised to the cap line as in the logo.
+   Drawn from engine colours — no image, no literals. Added by SiteMotion. */
+.section-mark::before {
+  content: "";
+  display: inline-block;
+  width: 0.42em;
+  height: 0.42em;
+  margin-right: 0.32em;
+  vertical-align: 0.48em;
+  background:
+    linear-gradient(var(--color-on-dark), var(--color-on-dark)) right 0.084em top 0.084em / 0.21em 0.063em no-repeat,
+    linear-gradient(var(--color-on-dark), var(--color-on-dark)) right 0.084em top 0.084em / 0.063em 0.21em no-repeat,
+    var(--color-secondary);
+}
 h2 { font-size: var(--text-3xl); }
 h3 { font-size: var(--text-xl); }
 h4 { font-size: var(--text-lg); }
