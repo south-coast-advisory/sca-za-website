@@ -35,10 +35,19 @@ function shareKicker(path: string): string {
   return "South Coast Advisory";
 }
 
-/** The page's own 1200×630 share card — see src/app/og/route.tsx. */
+/**
+ * The page's own 1200×630 share card — see src/app/og/card.tsx. Label and
+ * title go in the path, never the query string: Netlify's CDN ignores the
+ * query here and would serve one cached card for every page.
+ */
 export function shareImage(title: string, path: string) {
-  const qs = new URLSearchParams({ t: title, k: shareKicker(path) });
-  return { url: `/og?${qs}`, width: 1200, height: 630, alt: `${title} — ${site.name}` };
+  const seg = (v: string) => encodeURIComponent(v.replace(/\//g, "-"));
+  return {
+    url: `/og/${seg(shareKicker(path))}/${seg(title)}`,
+    width: 1200,
+    height: 630,
+    alt: `${title} — ${site.name}`,
+  };
 }
 
 export function pageMeta({

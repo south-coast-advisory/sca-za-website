@@ -19,6 +19,7 @@ export const metadata = pageMeta({
   description:
     "A Xero Silver Partner in Amanzimtoti. We move businesses from Pastel, Sage and QuickBooks to Xero, connect SA bank feeds and payroll, and train your team.",
   path: "/xero",
+  cardTitle: "Xero Silver Partner on the KZN South Coast",
 });
 
 const xeroFaqs = faqsByIds([
