@@ -39,7 +39,12 @@ const plexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(site.url),
+  // Share images resolve against the address this deploy actually serves.
+  // Netlify sets URL to the site's primary address: sca-za.netlify.app before
+  // the DNS cutover, www.sca-za.com after it. Without this, a link shared
+  // before launch points WhatsApp at the old site and shows no picture.
+  // Canonical URLs are built from site.url separately and are not affected.
+  metadataBase: new URL(process.env.URL || site.url),
   title: {
     default: "Accountants in Amanzimtoti | South Coast Advisory",
     template: "%s | South Coast Advisory",
