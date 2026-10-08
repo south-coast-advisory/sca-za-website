@@ -7,6 +7,8 @@
  * is a 404 for every link and bookmark pointing at it.
  */
 export const LEGACY_REDIRECTS = [
+  // Old in-site feedback page, replaced by the review engine on 8 Oct 2026.
+  { source: "/share-your-experience", destination: "/review", permanent: true },
   { source: "/index.html", destination: "/", permanent: true },
   { source: "/about-us.html", destination: "/about", permanent: true },
   { source: "/about-us/our-purpose-and-approach.html", destination: "/about", permanent: true },

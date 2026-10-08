@@ -17,7 +17,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/resources/sars-deadlines", priority: 0.7, freq: "monthly" },
     { path: "/resources/library", priority: 0.8, freq: "monthly" },
     { path: "/resources/ai", priority: 0.7, freq: "monthly" },
-    { path: "/share-your-experience", priority: 0.4, freq: "yearly" },
     { path: "/faq", priority: 0.7, freq: "monthly" },
     { path: "/glossary", priority: 0.7, freq: "monthly" },
     { path: "/about", priority: 0.6, freq: "yearly" },

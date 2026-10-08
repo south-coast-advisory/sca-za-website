@@ -56,7 +56,7 @@ export async function Testimonials({
           ))}
         </div>
         <p style={{ marginTop: "var(--space-6)", fontSize: "var(--text-sm)" }}>
-          <Link href="/share-your-experience">Are you a client? Tell us how we are doing →</Link>
+          <Link href="/review">Are you a client? Tell us how we did →</Link>
         </p>
       </div>
     </section>

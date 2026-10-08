@@ -1,65 +1,65 @@
-import Link from "next/link";
-import { redirect } from "next/navigation";
 import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/Blocks";
-import { site, telHref } from "@/lib/site";
+import { ReviewForm } from "@/components/reviews/ReviewForm";
+import { founder } from "@/lib/site";
 
 /**
- * /review — the short link that goes on emails, invoices, WhatsApp messages and
- * a card at reception. It redirects straight to the Google review box once the
- * profile link is configured.
+ * /review — the link that goes on emails, invoices, WhatsApp messages and a
+ * card at reception. Written or video review, guided questions, moderated
+ * before anything is published. Clients who rate 4–5 stars are offered the
+ * Google review box afterwards, once the profile link is set in site.ts.
  *
- * noindex: this is a utility redirect, not a page we want in search results.
+ * noindex: a form for existing clients, not a page to rank.
  */
 export const metadata: Metadata = {
-  title: "Leave us a review",
+  title: "Review South Coast Advisory",
+  description: "Clients of South Coast Advisory: share a written or video review. Nothing is published until we have confirmed it with you.",
   robots: { index: false, follow: true },
 };
 
+const steps = [
+  [`${founder.name.split(" ")[0]} reads it himself`, "Every review, written or video, goes to him first."],
+  ["We confirm it with you", "Nothing appears on the website until you have approved the wording."],
+  ["You stay in control", "Ask us to take it down at any time, no explanation needed."],
+] as const;
+
 export default function ReviewPage() {
-  if (site.google.reviewUrl) {
-    redirect(site.google.reviewUrl);
-  }
-
   return (
-    <section className="shell-narrow section prose">
-      <Breadcrumbs
-        trail={[
-          { name: "Home", path: "/" },
-          { name: "Leave a review", path: "/review" },
-        ]}
-      />
-      <h1>Thank you for reviewing us</h1>
-      <p className="lede">
-        A review from someone who has actually worked with us is worth more than anything we can
-        write about ourselves. It takes about two minutes.
-      </p>
+    <>
+      <section className="review-hero">
+        <div className="shell-narrow">
+          <Breadcrumbs
+            trail={[
+              { name: "Home", path: "/" },
+              { name: "Leave a review", path: "/review" },
+            ]}
+          />
+          <div className="review-hero__stars" aria-hidden="true">★★★★★</div>
+          <h1>How did we do?</h1>
+          <p className="lede">
+            If we have looked after your books, your tax or your payroll, a few honest sentences
+            — or a 90-second video — help the next South Coast business owner decide.
+          </p>
+        </div>
+      </section>
 
-      <h2>On Google</h2>
-      <p>
-        Search for <strong>{site.legalName}</strong> on Google or Google Maps, then choose{" "}
-        <strong>Write a review</strong> on our listing. You will need to be signed in to a Google
-        account, which most people already are on their phone.
-      </p>
+      <section className="review-body">
+        <div className="shell-narrow">
+          <div className="review-card">
+            <ReviewForm />
+          </div>
 
-      <h2>What is useful to say</h2>
-      <ul>
-        <li>What you needed help with — bookkeeping, tax, payroll, a SARS problem, moving to Xero</li>
-        <li>What difference it made to your business</li>
-        <li>Anything that surprised you, good or bad</li>
-      </ul>
-      <p>
-        Honest beats glowing. A review that mentions a specific problem we solved helps the next
-        business owner far more than five stars on their own.
-      </p>
-
-      <h2>Would you rather not use Google?</h2>
-      <p>
-        You can <Link href="/share-your-experience">send your comments to us directly</Link> instead,
-        and we will not publish anything without showing you the wording first. Or phone{" "}
-        <a href={telHref}>{site.phoneDisplay}</a> and tell us — we will write it up and send it to
-        you to approve.
-      </p>
-    </section>
+          <ol className="review-steps">
+            {steps.map(([title, body], i) => (
+              <li key={title}>
+                <span className="review-steps__n">{i + 1}</span>
+                <strong>{title}</strong>
+                <span>{body}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+    </>
   );
 }

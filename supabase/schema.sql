@@ -75,7 +75,13 @@ create table if not exists public.testimonials (
   approved_at    timestamptz,
   display_order  int,
   featured       boolean not null default false,
-  internal_notes text
+  internal_notes text,
+  -- Review engine, 8 Oct 2026 — see migrations/20261008_review_engine.sql
+  headline       text,
+  answers_json   jsonb,
+  review_type    text not null default 'written' check (review_type in ('written','video')),
+  video_path     text,
+  service_slug   text
 );
 
 create index if not exists testimonials_status_idx on public.testimonials (status);

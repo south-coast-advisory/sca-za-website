@@ -64,8 +64,7 @@ export function Footer() {
               <li><Link href="/resources/sars-deadlines" style={linkStyle}>SARS deadlines</Link></li>
               <li><Link href="/faq" style={linkStyle}>FAQ</Link></li>
               <li><Link href="/glossary" style={linkStyle}>Glossary</Link></li>
-              <li><Link href="/share-your-experience" style={linkStyle}>Client feedback</Link></li>
-              <li><Link href="/review" style={linkStyle}>Leave a Google review</Link></li>
+              <li><Link href="/review" style={linkStyle}>Leave a review</Link></li>
             </ul>
           </div>
 
