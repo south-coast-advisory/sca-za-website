@@ -7,6 +7,7 @@ import { libraryDocuments } from "@/content/documents";
 import { services } from "@/content/services";
 import { tutorials } from "@/content/tutorials";
 import { founder, site } from "@/lib/site";
+import { pageMeta } from "@/lib/seo";
 
 /**
  * A one-screen overview of the website for Neil: what it has, how a client
@@ -15,8 +16,16 @@ import { founder, site } from "@/lib/site";
  * Not in the navigation or the sitemap; share the link directly.
  * SEO numbers come from scripts/seo-audit.mjs — rerun it after changes.
  */
+// Shared by link on WhatsApp, so it carries its own title, description and
+// card; still kept out of search results.
 export const metadata: Metadata = {
-  title: "Website overview",
+  ...pageMeta({
+    title: "Website overview",
+    description:
+      "Everything the new South Coast Advisory website does, how it scores on Google, the ranking guarantee, and what is left before launch.",
+    path: "/site-info",
+    cardTitle: "The South Coast Advisory website at a glance",
+  }),
   robots: { index: false, follow: false },
 };
 

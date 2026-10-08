@@ -31,6 +31,7 @@ function shareKicker(path: string): string {
   if (path.startsWith("/about")) return "About the practice";
   if (path.startsWith("/contact")) return "Contact";
   if (path.startsWith("/review")) return "Client reviews";
+  if (path.startsWith("/site-info")) return "Website overview";
   return "South Coast Advisory";
 }
 
