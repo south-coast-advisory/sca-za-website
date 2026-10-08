@@ -75,6 +75,31 @@ const steps = [
   ["Refer", "A review on the site and on Google brings the next South Coast business owner."],
 ];
 
+/** The phrases the ranking guarantee is measured on. Local intent, real volume. */
+const guaranteeKeywords = [
+  "accountant Amanzimtoti",
+  "accountants Amanzimtoti",
+  "tax practitioner Amanzimtoti",
+  "bookkeeping Amanzimtoti",
+  "payroll services Amanzimtoti",
+  "Xero partner KZN South Coast",
+  "Xero accountant South Coast",
+  "business valuations Durban South",
+];
+
+const aiQuestions = [
+  "Who is a good accountant in Amanzimtoti?",
+  "Is there a Xero partner on the KZN South Coast?",
+  "Who can help me with SARS on the South Coast?",
+];
+
+const guaranteeTerms = [
+  ["Page one on Google", "Within six months of launch, the site ranks on the first page of Google for the phrases listed here."],
+  ["Named by AI search", "Within six months, ChatGPT, Google's AI Overviews and Perplexity name South Coast Advisory when asked the questions listed here."],
+  ["A report by the 5th", "Each month: where every phrase ranks, what each AI assistant answered, enquiries received, and the SEO score."],
+  ["If we fall short", "We keep working on the site, at no extra charge, until every target is met."],
+] as const;
+
 const fromNeil = [
   "Current fees for the four service packages (only a 2020 price list exists)",
   "The first client reviews: send happy clients the /review link",
@@ -197,6 +222,65 @@ export default function SiteInfoPage() {
               ))}
             </ul>
           </div>
+        </div>
+      </section>
+
+      <section className="surface" id="guarantee">
+        <div className="shell section si-guarantee">
+          <div className="si-guarantee__head">
+            <span className="si-seal" aria-hidden="true">
+              <span>Ranking</span>
+              <strong>Guarantee</strong>
+              <span>6 months</span>
+            </span>
+            <div>
+              <p className="label">Our guarantee</p>
+              <p className="si-guarantee__title">Found on Google and named by AI search, or we keep working</p>
+              <p>
+                A website only earns its place if the people looking for an accountant on the South
+                Coast find it. So the targets are written down, measured every month, and ours to meet.
+              </p>
+            </div>
+          </div>
+
+          <ol className="si-guarantee__terms">
+            {guaranteeTerms.map(([t, b]) => (
+              <li key={t}>
+                <strong>{t}</strong>
+                <span>{b}</span>
+              </li>
+            ))}
+          </ol>
+
+          <div className="si-guarantee__lists">
+            <div>
+              <p className="si-subhead">Google: the phrases measured</p>
+              <ul className="si-pills">
+                {guaranteeKeywords.map((k) => (
+                  <li key={k}>{k}</li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <p className="si-subhead">AI search: the questions asked</p>
+              <ul className="si-checks">
+                {aiQuestions.map((q) => (
+                  <li key={q}>
+                    <span>{q}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <p className="si-guarantee__fine">
+            <strong>What it covers, and what it does not.</strong> The guarantee is about being found:
+            rankings and AI answers. It does not promise a number of enquiries, clients or revenue,
+            because those also depend on fees, reviews and how each enquiry is followed up. The six
+            months run from the day sca-za.com points to the new site, and assume the Google Business
+            Profile is linked and client reviews are being collected. Rankings are measured from a
+            neutral, signed-out search in the Durban area.
+          </p>
         </div>
       </section>
 
