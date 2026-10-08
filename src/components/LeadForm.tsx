@@ -59,13 +59,7 @@ export function LeadForm({ source, service, compact = false, heading }: Props) {
       className={compact ? "card lead-form lead-form--compact" : "card lead-form"}
       style={{ background: "var(--color-surface)", display: "grid", gap: compact ? "var(--space-3)" : "var(--space-4)" }}
     >
-      <div>
-        <h3 style={{ marginBottom: "var(--space-1)" }}>{heading ?? "Book a free 20-minute call"}</h3>
-        <p style={{ fontSize: "var(--text-sm)", color: "var(--color-copy-muted)", margin: 0 }}>
-          Tell us where your business is and we will tell you what we would do first. No charge, no
-          obligation.
-        </p>
-      </div>
+      <h3 style={{ marginBottom: 0 }}>{heading ?? "Book a free 20-minute call"}</h3>
 
       <div className="field">
         <label className="sr-only" htmlFor={`${source}-name`}>Your name</label>
@@ -127,10 +121,6 @@ export function LeadForm({ source, service, compact = false, heading }: Props) {
         </p>
       )}
 
-      <p style={{ fontSize: "var(--text-xs)", color: "var(--color-copy-muted)", margin: 0 }}>
-        Prefer to talk? Phone <a href={telHref}>{site.phoneDisplay}</a>. We are in Amanzimtoti,
-        weekdays.
-      </p>
     </form>
   );
 }
