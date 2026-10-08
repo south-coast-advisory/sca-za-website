@@ -375,10 +375,13 @@ a:hover { color: var(--color-primary); }
   .card:hover { transform: none; }
 }
 
+/* Eyebrow labels in the heading face, not mono — mono is kept only for
+   AI prompt examples, where a typed look is the point. */
 .label {
-  font-family: var(--font-mono);
+  font-family: var(--font-heading);
   font-size: var(--text-xs);
-  letter-spacing: 0.08em;
+  font-weight: 600;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--color-copy-muted);
 }
@@ -842,7 +845,7 @@ html.is-scrolled .site-header {
 }
 .sandy-panel__eyebrow {
   margin: 0;
-  font-family: var(--font-mono);
+  font-family: var(--font-heading);
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.2em;
@@ -1060,7 +1063,8 @@ table.data {
 }
 table.data th {
   text-align: left;
-  font-family: var(--font-mono);
+  font-family: var(--font-heading);
+  font-weight: 600;
   font-size: var(--text-xs);
   text-transform: uppercase;
   letter-spacing: 0.06em;

@@ -64,16 +64,16 @@ export function Breadcrumbs({ trail }: { trail: { name: string; path: string }[]
           listStyle: "none",
           margin: 0,
           padding: 0,
-          fontSize: "var(--text-xs)",
-          fontFamily: "var(--font-mono)",
+          fontSize: "var(--text-sm)",
+          fontFamily: "var(--font-heading)",
           color: "var(--color-copy-muted)",
         }}
       >
         {trail.map((item, i) => (
           <li key={item.path} style={{ display: "flex", gap: "var(--space-2)" }}>
-            {i > 0 && <span aria-hidden="true">/</span>}
+            {i > 0 && <span aria-hidden="true" style={{ color: "var(--color-secondary)" }}>›</span>}
             {i === trail.length - 1 ? (
-              <span>{item.name}</span>
+              <span aria-current="page" style={{ color: "var(--color-dark)", fontWeight: 600 }}>{item.name}</span>
             ) : (
               <Link href={item.path} style={{ color: "inherit" }}>
                 {item.name}

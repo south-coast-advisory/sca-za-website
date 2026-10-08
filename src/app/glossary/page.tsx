@@ -38,7 +38,8 @@ export default function GlossaryPage() {
               listStyle: "none",
               margin: 0,
               padding: 0,
-              fontFamily: "var(--font-mono)",
+              fontFamily: "var(--font-heading)",
+              fontWeight: 600,
             }}
           >
             {alphabet.map((letter) => (
