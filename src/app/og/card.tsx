@@ -68,7 +68,7 @@ export async function renderCard(rawTitle?: string, rawKicker?: string) {
           </div>
 
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", fontSize: 26, fontWeight: 500, color: "#FFFFFF" }}>
-            <div style={{ display: "flex" }}>{site.phoneDisplay} · sca-za.com</div>
+            <div style={{ display: "flex" }}>{site.phoneDisplay} · sca-za.co.za</div>
             <div style={{ display: "flex", borderTop: `5px solid ${RED}`, paddingTop: "12px" }}>
               Xero Silver Partner · Since {site.founded}
             </div>

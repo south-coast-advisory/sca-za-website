@@ -1,6 +1,6 @@
 {
- "auditedAt": "2026-10-08T11:29:02.929Z",
- "total": 35,
+ "auditedAt": "2026-10-08T20:59:57.550Z",
+ "total": 36,
  "score": 100,
  "sections": [
   {
@@ -20,8 +20,8 @@
   },
   {
    "name": "Practice & policies",
-   "pages": 5,
-   "score": 100
+   "pages": 6,
+   "score": 98
   },
   {
    "name": "Resources & answers",
@@ -43,37 +43,37 @@
   {
    "label": "Title 30–65 characters",
    "points": 15,
-   "passed": 35
+   "passed": 36
   },
   {
    "label": "Description 70–165 characters",
    "points": 15,
-   "passed": 35
+   "passed": 36
   },
   {
    "label": "Exactly one H1",
    "points": 10,
-   "passed": 35
+   "passed": 36
   },
   {
    "label": "Canonical URL",
    "points": 10,
-   "passed": 35
+   "passed": 36
   },
   {
    "label": "Share image",
    "points": 10,
-   "passed": 35
+   "passed": 36
   },
   {
    "label": "Structured data",
    "points": 10,
-   "passed": 35
+   "passed": 36
   },
   {
    "label": "Images described",
    "points": 10,
-   "passed": 35
+   "passed": 36
   },
   {
    "label": "250+ words of content",
@@ -83,20 +83,31 @@
   {
    "label": "Sub-headings",
    "points": 5,
-   "passed": 35
+   "passed": 36
   },
   {
    "label": "10+ internal links",
    "points": 5,
-   "passed": 35
+   "passed": 36
   }
  ],
  "pages": [
   {
+   "url": "/book",
+   "title": "Book a Free Consultation, Amanzimtoti | South Coast Advisory",
+   "score": 90,
+   "words": 127,
+   "failed": [
+    "127 words"
+   ],
+   "section": "Practice & policies",
+   "status": 200
+  },
+  {
    "url": "/",
    "title": "Accountants in Amanzimtoti | South Coast Advisory",
    "score": 100,
-   "words": 985,
+   "words": 992,
    "failed": [],
    "section": "Home",
    "status": 200
@@ -105,7 +116,7 @@
    "url": "/xero",
    "title": "Xero Partner, KZN South Coast | South Coast Advisory",
    "score": 100,
-   "words": 1469,
+   "words": 1476,
    "failed": [],
    "section": "Xero",
    "status": 200
@@ -204,7 +215,7 @@
    "url": "/contact",
    "title": "Contact Us, Amanzimtoti | South Coast Advisory",
    "score": 100,
-   "words": 250,
+   "words": 257,
    "failed": [],
    "section": "Practice & policies",
    "status": 200
@@ -231,7 +242,7 @@
    "url": "/services/accounting-bookkeeping",
    "title": "Bookkeeping & Accounting Services, Amanzimtoti",
    "score": 100,
-   "words": 576,
+   "words": 583,
    "failed": [],
    "section": "Services",
    "status": 200
@@ -240,7 +251,7 @@
    "url": "/services/tax",
    "title": "Tax Practitioner Services, KZN South Coast",
    "score": 100,
-   "words": 564,
+   "words": 571,
    "failed": [],
    "section": "Services",
    "status": 200
@@ -249,7 +260,7 @@
    "url": "/services/payroll",
    "title": "Payroll Services & EMP201 Submissions | South Coast Advisory",
    "score": 100,
-   "words": 516,
+   "words": 523,
    "failed": [],
    "section": "Services",
    "status": 200
@@ -258,7 +269,7 @@
    "url": "/services/company-secretarial",
    "title": "CIPC & Company Secretarial Services | South Coast Advisory",
    "score": 100,
-   "words": 454,
+   "words": 461,
    "failed": [],
    "section": "Services",
    "status": 200
@@ -267,7 +278,7 @@
    "url": "/services/advisory-cfo",
    "title": "Virtual CFO & Business Advisory, KZN | South Coast Advisory",
    "score": 100,
-   "words": 369,
+   "words": 376,
    "failed": [],
    "section": "Services",
    "status": 200
@@ -276,7 +287,7 @@
    "url": "/services/business-valuations",
    "title": "Business Valuation Services, Durban South",
    "score": 100,
-   "words": 453,
+   "words": 460,
    "failed": [],
    "section": "Services",
    "status": 200
@@ -285,7 +296,7 @@
    "url": "/services/hr",
    "title": "HR & Employment Support for Small Businesses",
    "score": 100,
-   "words": 339,
+   "words": 346,
    "failed": [],
    "section": "Services",
    "status": 200
@@ -294,7 +305,7 @@
    "url": "/services/property-management",
    "title": "Property & Body Corporate Management | South Coast Advisory",
    "score": 100,
-   "words": 363,
+   "words": 370,
    "failed": [],
    "section": "Services",
    "status": 200

@@ -11,7 +11,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 const base = process.argv[2] ?? "http://localhost:3000";
-const DOMAIN = "https://www.sca-za.com";
+const DOMAIN = "https://www.sca-za.co.za";
 
 const CHECKS = [
   { id: "title", label: "Title 30–65 characters", points: 15 },

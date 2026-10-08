@@ -136,7 +136,7 @@ export function icsInvite(opts: { uid: string; startIso: string; title: string; 
     "PRODID:-//South Coast Advisory//Consultation//EN",
     "METHOD:PUBLISH",
     "BEGIN:VEVENT",
-    `UID:${opts.uid}@sca-za.com`,
+    `UID:${opts.uid}@sca-za.co.za`,
     `DTSTAMP:${fmt(new Date())}`,
     `DTSTART:${fmt(start)}`,
     `DTEND:${fmt(end)}`,
