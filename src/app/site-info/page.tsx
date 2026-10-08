@@ -119,7 +119,6 @@ const fromNeil = [
 ];
 
 const switchOn = [
-  "Restore the database and switch on video reviews",
   "Point sca-za.com to the new site (email stays exactly where it is)",
   "Google Search Console and Bing Webmaster Tools",
   "Confirm the hero video licence",
