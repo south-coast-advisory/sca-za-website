@@ -1,0 +1,33 @@
+www.sca-za.com sitemap_index.xml, read 8 Oct 2026 (Yoast, WordPress).
+Every URL below is covered by legacy-redirects.ts; tested locally, all land on a 200.
+
+page-sitemap.xml
+/                                   -> /
+/about-us.html                      -> /about
+/contact-us.html                    -> /contact
+/accounting-services.html           -> /services/accounting-bookkeeping
+/bookkeeping-and-accounting.html    -> /services/accounting-bookkeeping
+/tax-services.html                  -> /services/tax
+/payroll-management.html            -> /services/payroll
+/secretarial-services.html          -> /services/company-secretarial
+/management-consultation.html       -> /services/advisory-cfo
+/business-valuations.html           -> /services/business-valuations
+/human-resources.html               -> /services/hr
+/property-management.html           -> /services/property-management
+/xero-accounting.html               -> /xero
+/legal.html                         -> /privacy
+/legal/privacy-policy.html          -> /privacy
+/legal/terms-and-conditions.html    -> /terms
+/login.html                         -> /contact
+/my-account.html                    -> /contact
+/logout.html                        -> /
+/thank-you.html                     -> /contact
+
+post-sitemap.xml
+/hello-world/                       -> /
+
+category-sitemap.xml
+/Accounting%20Services/uncategorized/ -> /
+
+oxy_user_library-sitemap.xml
+/?oxy_user_library=woo-galley-slider  (home page with a query string; no redirect needed)

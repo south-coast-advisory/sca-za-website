@@ -1,6 +1,7 @@
 /**
  * Permanent redirects from the old site's .html URLs to the new structure.
- * Sources: live nav of www.sca-za.com (crawled 16 Sep 2026). sca-za.co.za
+ * Sources: live nav of www.sca-za.com (crawled 16 Sep 2026), checked against its
+ * sitemap_index.xml on 8 Oct 2026 — every URL in that sitemap is covered below. sca-za.co.za
  * already 301s to the matching .com path, so these cover both domains.
  *
  * Add to this list, never remove from it: an old URL that stops redirecting
@@ -36,4 +37,12 @@ export const LEGACY_REDIRECTS = [
   { source: "/login.html", destination: "/contact", permanent: true },
   { source: "/logout.html", destination: "/", permanent: true },
   { source: "/my-account.html", destination: "/contact", permanent: true },
+
+  // In the old sitemap (8 Oct 2026) but not the menu: a legal index, the form
+  // thank-you page, and WordPress defaults that were never deleted.
+  { source: "/legal.html", destination: "/privacy", permanent: true },
+  { source: "/thank-you.html", destination: "/contact", permanent: true },
+  { source: "/hello-world", destination: "/", permanent: true },
+  { source: "/Accounting%20Services/:path*", destination: "/", permanent: true },
+  { source: "/Accounting Services/:path*", destination: "/", permanent: true },
 ];
