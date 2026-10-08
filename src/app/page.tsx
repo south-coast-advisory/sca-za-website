@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { LeadForm } from "@/components/LeadForm";
+import { HeroVideo } from "@/components/HeroVideo";
 import { AnswerBlock, CtaBand, FaqList, ProofRow } from "@/components/Blocks";
 import { Testimonials } from "@/components/Testimonials";
 import { JsonLd } from "@/components/JsonLd";
@@ -34,7 +35,10 @@ export default function HomePage() {
       <JsonLd data={faqSchema(homeFaqs)} />
 
       {/* ── Hero: where am I / what do I get / why care / what next ── */}
-      <section className="shell section">
+      <section className="hero-video">
+        <HeroVideo />
+        <div className="hero-video__wash" aria-hidden="true" />
+        <div className="shell hero-video__inner">
         <div className="hero-grid">
           <div className="hero-copy">
             <h1>Accountants and Xero partner in Amanzimtoti since 1980</h1>
@@ -48,8 +52,9 @@ export default function HomePage() {
             <LeadForm source="home-hero" compact />
           </div>
           <div className="hero-proof">
-            <ProofRow />
+            <ProofRow onDark />
           </div>
+        </div>
         </div>
       </section>
 

@@ -56,8 +56,8 @@ export function LeadForm({ source, service, compact = false, heading }: Props) {
   return (
     <form
       onSubmit={onSubmit}
-      className="card"
-      style={{ background: "var(--color-surface)", display: "grid", gap: "var(--space-4)" }}
+      className={compact ? "card lead-form lead-form--compact" : "card lead-form"}
+      style={{ background: "var(--color-surface)", display: "grid", gap: compact ? "var(--space-3)" : "var(--space-4)" }}
     >
       <div>
         <h3 style={{ marginBottom: "var(--space-1)" }}>{heading ?? "Book a free 20-minute call"}</h3>
@@ -75,8 +75,10 @@ export function LeadForm({ source, service, compact = false, heading }: Props) {
       <div
         style={{
           display: "grid",
-          gap: "var(--space-4)",
-          gridTemplateColumns: compact ? "1fr" : "repeat(auto-fit, minmax(190px, 1fr))",
+          gap: compact ? "var(--space-3)" : "var(--space-4)",
+          gridTemplateColumns: compact
+            ? "repeat(auto-fit, minmax(150px, 1fr))"
+            : "repeat(auto-fit, minmax(190px, 1fr))",
         }}
       >
         <div className="field">
@@ -98,7 +100,7 @@ export function LeadForm({ source, service, compact = false, heading }: Props) {
 
       <div className="field">
         <label className="sr-only" htmlFor={`${source}-message`}>What do you need help with?</label>
-        <textarea id={`${source}-message`} name="message" rows={3} className="textarea"  placeholder="What do you need help with?"/>
+        <textarea id={`${source}-message`} name="message" rows={compact ? 2 : 3} className="textarea"  placeholder="What do you need help with?"/>
       </div>
 
       {/* Honeypot — hidden from people, irresistible to bots */}

@@ -525,6 +525,59 @@ html.is-scrolled .site-header {
 }
 .hero-grid > .hero-proof { margin-top: var(--space-2); }
 
+/* Home hero: muted video loop under a navy wash. Dark ground separates it
+   clearly from the light header; the wash is strongest behind the headline
+   and thins out to the right, where the typing hands sit behind the form. */
+.hero-video {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--brand-900);
+}
+.hero-video__media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 70% 50%;
+  z-index: -2;
+}
+.hero-video__wash {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    90deg,
+    hsl(var(--brand-h) var(--brand-s) 12% / 0.94) 0%,
+    hsl(var(--brand-h) var(--brand-s) 14% / 0.86) 48%,
+    hsl(var(--brand-h) var(--brand-s) 16% / 0.5) 100%
+  );
+}
+.hero-video__inner {
+  display: flex;
+  align-items: center;
+  padding-block: clamp(1.5rem, 4vh, 3rem);
+}
+.hero-video__inner > .hero-grid { width: 100%; }
+.hero-video h1 {
+  color: var(--color-on-dark);
+  font-size: clamp(2.1rem, 1.2rem + 2.6vw, 3.3rem);
+  margin-bottom: var(--space-4);
+}
+.hero-video .lede { color: var(--color-on-dark-muted); }
+/* The form card floats over the video; no hover lift on a form. */
+.hero-video .lead-form {
+  background: var(--color-background) !important;
+  border: 0;
+  box-shadow: 0 24px 60px hsl(var(--brand-h) var(--brand-s) 6% / 0.4);
+}
+.hero-video .lead-form:hover { transform: none; }
+.lead-form--compact { padding: var(--space-6); }
+.lead-form--compact .input,
+.lead-form--compact .textarea { padding-block: 0.65rem; }
+.lead-form--compact .consent { font-size: var(--text-xs); }
+
 @media (min-width: 880px) {
   .hero-grid {
     grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
@@ -534,6 +587,9 @@ html.is-scrolled .site-header {
     column-gap: var(--space-12);
     row-gap: var(--space-8);
   }
+  /* Whole hero in the first screen: fill the viewport under the header. */
+  .hero-video__inner { min-height: min(calc(100svh - 81px), 780px); }
+  .hero-video .hero-grid { row-gap: var(--space-6); align-items: center; }
   .hero-grid > .hero-copy { grid-area: copy; }
   .hero-grid > .hero-form { grid-area: form; }
   .hero-grid > .hero-proof { grid-area: proof; align-self: start; }
@@ -544,8 +600,9 @@ html.is-scrolled .site-header {
   position: sticky;
   top: 0;
   z-index: 20;
-  background: var(--color-background);
+  background: linear-gradient(90deg, var(--color-background) 0%, var(--brand-50) 40%, var(--brand-100) 75%, var(--brand-200) 100%);
   border-bottom: 1px solid var(--color-border);
+  box-shadow: 0 4px 16px hsl(var(--brand-h) var(--brand-s) 20% / 0.08);
 }
 .site-header__inner {
   display: flex;

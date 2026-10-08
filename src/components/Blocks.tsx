@@ -4,7 +4,7 @@ import type { Faq } from "@/content/faq";
 import { termsByIds } from "@/content/glossary";
 
 /** The proof strip that sits directly under a hero. */
-export function ProofRow() {
+export function ProofRow({ onDark = false }: { onDark?: boolean }) {
   return (
     <ul
       style={{
@@ -30,12 +30,12 @@ export function ProofRow() {
               fontFamily: "var(--font-heading)",
               fontWeight: 600,
               fontSize: "var(--text-lg)",
-              color: "var(--color-dark)",
+              color: onDark ? "var(--color-on-dark)" : "var(--color-dark)",
             }}
           >
             {p.value}
           </span>
-          <span style={{ fontSize: "var(--text-sm)", color: "var(--color-copy-muted)" }}>
+          <span style={{ fontSize: "var(--text-sm)", color: onDark ? "var(--color-on-dark-muted)" : "var(--color-copy-muted)" }}>
             {p.label}
           </span>
         </li>
