@@ -13,8 +13,9 @@ export const metadata = pageMeta({
   // Short enough that the brand suffix survives; Xero terms are targeted by /xero.
   title: "Accountants in Amanzimtoti",
   description:
-    "Accounting, tax, payroll and Xero support for KZN South Coast businesses. In Amanzimtoti since 1980, and a Xero Silver Partner. Book a free 20-minute call.",
+    "Accounting, tax, payroll and Xero for KZN South Coast businesses. In Amanzimtoti since 1980; Xero Silver Partner. Book a free 20-minute consultation.",
   path: "/",
+  cardTitle: site.tagline,
 });
 
 /** Re-check for newly approved testimonials hourly. */

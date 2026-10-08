@@ -17,11 +17,35 @@ function fitTitle(title: string): string | { absolute: string } {
   return title.length + BRAND_SUFFIX_LENGTH > MAX_TITLE ? { absolute: title } : title;
 }
 
+/** Section label on the share card, from the URL. */
+function shareKicker(path: string): string {
+  if (path === "/") return "Accountants · Amanzimtoti";
+  if (path.startsWith("/services")) return "Services";
+  if (path.startsWith("/xero")) return "Xero Silver Partner";
+  if (path.startsWith("/resources/library")) return "Free guide";
+  if (path.startsWith("/resources/ai")) return "AI for business owners";
+  if (path.startsWith("/resources")) return "Resources";
+  if (path.startsWith("/faq")) return "Questions answered";
+  if (path.startsWith("/glossary")) return "Glossary";
+  if (path.startsWith("/pricing")) return "Fees";
+  if (path.startsWith("/about")) return "About the practice";
+  if (path.startsWith("/contact")) return "Contact";
+  if (path.startsWith("/review")) return "Client reviews";
+  return "South Coast Advisory";
+}
+
+/** The page's own 1200×630 share card — see src/app/og/route.tsx. */
+export function shareImage(title: string, path: string) {
+  const qs = new URLSearchParams({ t: title, k: shareKicker(path) });
+  return { url: `/og?${qs}`, width: 1200, height: 630, alt: `${title} — ${site.name}` };
+}
+
 export function pageMeta({
   title,
   description,
   path,
-  image = "/brand/icon.png",
+  image,
+  cardTitle,
   /**
    * True where the route has its own generated opengraph-image file. Setting
    * images here would override it, so we leave them out and let Next's file
@@ -33,9 +57,14 @@ export function pageMeta({
   description: string;
   path: string;
   image?: string;
+  /** Headline for the share card when it should differ from the <title>. */
+  cardTitle?: string;
   generatedImage?: boolean;
 }): Metadata {
   const url = `${site.url}${path}`;
+  // WhatsApp and LinkedIn show og:title on its own, so it always carries the brand.
+  const shareTitle = title.includes(site.name) ? title : `${title} | ${site.name}`;
+  const card = image ? { url: image } : shareImage(cardTitle ?? title, path);
   if (description.length > 160) {
     console.warn(`[seo] description ${description.length} chars (max 160): ${path}`);
   }
@@ -44,19 +73,19 @@ export function pageMeta({
     description,
     alternates: { canonical: url },
     openGraph: {
-      title,
+      title: shareTitle,
       description,
       url,
       siteName: site.name,
       locale: "en_ZA",
       type: "website",
-      ...(generatedImage ? {} : { images: [{ url: image }] }),
+      ...(generatedImage ? {} : { images: [card] }),
     },
     twitter: {
       card: "summary_large_image",
-      title,
+      title: shareTitle,
       description,
-      ...(generatedImage ? {} : { images: [image] }),
+      ...(generatedImage ? {} : { images: [card] }),
     },
   };
 }

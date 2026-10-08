@@ -66,7 +66,7 @@ export const site = {
     profileUrl: "", // VERIFY: the public maps listing
   },
   cta: {
-    label: "Book a free 20-minute call",
+    label: "Book a free 20-minute consultation",
     href: "/contact",
   },
 } as const;

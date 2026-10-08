@@ -7,7 +7,7 @@ import { breadcrumbSchema, pageMeta } from "@/lib/seo";
 export const metadata = pageMeta({
   title: "Contact Us, Amanzimtoti",
   description:
-    "Phone South Coast Advisory on 031 903 4787, or book a free 20-minute call. Our office is at 22 Rosslyn Road, Amanzimtoti, KwaZulu-Natal.",
+    "Phone South Coast Advisory on 031 903 4787, or book a free 20-minute consultation. Our office is at 22 Rosslyn Road, Amanzimtoti, KwaZulu-Natal.",
   path: "/contact",
 });
 

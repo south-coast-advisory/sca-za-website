@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/Blocks";
 import { ReviewForm } from "@/components/reviews/ReviewForm";
 import { founder } from "@/lib/site";
@@ -12,8 +13,12 @@ import { founder } from "@/lib/site";
  * noindex: a form for existing clients, not a page to rank.
  */
 export const metadata: Metadata = {
-  title: "Review South Coast Advisory",
-  description: "Clients of South Coast Advisory: share a written or video review. Nothing is published until we have confirmed it with you.",
+  ...pageMeta({
+    title: "Leave a review",
+    description:
+      "Clients of South Coast Advisory: share a written or video review. Nothing is published until we have confirmed it with you.",
+    path: "/review",
+  }),
   robots: { index: false, follow: true },
 };
 

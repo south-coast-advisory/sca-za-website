@@ -52,7 +52,12 @@ export const metadata: Metadata = {
     ],
     apple: "/brand/favicon-512.png",
   },
-  openGraph: { siteName: site.name, locale: "en_ZA", type: "website" },
+  openGraph: {
+    siteName: site.name,
+    locale: "en_ZA",
+    type: "website",
+    images: [{ url: "/og", width: 1200, height: 630, alt: site.tagline }],
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
