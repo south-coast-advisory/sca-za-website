@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+import { Turnstile, turnstileSiteKey } from "@/components/Turnstile";
 import { site, telHref } from "@/lib/site";
 
 type Props = {
@@ -13,6 +15,7 @@ type Props = {
 export function LeadForm({ source, service, compact = false, heading }: Props) {
   const [state, setState] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [error, setError] = useState("");
+  const [token, setToken] = useState("");
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -25,7 +28,7 @@ export function LeadForm({ source, service, compact = false, heading }: Props) {
       const res = await fetch("/api/lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, consent: data.consent === "on", source, service }),
+        body: JSON.stringify({ ...data, consent: data.consent === "on", source, service, turnstileToken: token }),
       });
       const json = await res.json();
       if (!res.ok || !json.ok) {
@@ -111,9 +114,15 @@ export function LeadForm({ source, service, compact = false, heading }: Props) {
         </span>
       </label>
 
-      <button type="submit" className="btn btn-primary" disabled={state === "sending"}>
+      <Turnstile onToken={setToken} />
+
+      <button type="submit" className="btn btn-primary" disabled={state === "sending" || Boolean(turnstileSiteKey() && !token)}>
         {state === "sending" ? "Sending…" : "Request my consultation"}
       </button>
+
+      <p style={{ margin: 0, fontSize: "var(--text-sm)", textAlign: "center" }}>
+        <Link href="/book" style={{ fontWeight: 600 }}>Or choose a time on the calendar →</Link>
+      </p>
 
       {state === "error" && (
         <p role="alert" style={{ color: "var(--color-secondary)", fontSize: "var(--text-sm)", margin: 0 }}>

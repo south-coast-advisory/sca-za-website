@@ -79,7 +79,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="surface">
+      <section className="surface" id="what-to-bring">
         <div className="shell section-tight">
           <h2>What to bring to the consultation</h2>
           <p className="lede">

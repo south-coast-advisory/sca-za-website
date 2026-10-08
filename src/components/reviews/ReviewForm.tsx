@@ -11,6 +11,7 @@ import {
   videoPrompts,
 } from "@/lib/review-form";
 import { site } from "@/lib/site";
+import { Turnstile, turnstileSiteKey } from "@/components/Turnstile";
 
 /* Review engine — ported from Lava-SA (write + record tabs, guided questions,
    in-browser recording), restyled on SCA's form standard. */
@@ -121,6 +122,7 @@ function WrittenReview() {
   const [status, setStatus] = useState<"idle" | "sending" | "done">("idle");
   const [serverError, setServerError] = useState("");
   const [copied, setCopied] = useState(false);
+  const [token, setToken] = useState("");
 
   const set = (field: keyof typeof form, value: string | number | boolean) => {
     setForm((p) => ({ ...p, [field]: value }));
@@ -157,7 +159,7 @@ function WrittenReview() {
       const res = await fetch("/api/reviews", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, website }),
+        body: JSON.stringify({ ...form, website, turnstileToken: token }),
       });
       const json = await res.json().catch(() => ({}));
       if (!res.ok || !json.ok) {
@@ -302,7 +304,8 @@ function WrittenReview() {
       </label>
       {err("permission")}
 
-      <button type="submit" className="btn btn-primary review-submit" disabled={status === "sending"}>
+      <Turnstile onToken={setToken} />
+      <button type="submit" className="btn btn-primary review-submit" disabled={status === "sending" || Boolean(turnstileSiteKey() && !token)}>
         {status === "sending" ? "Sending…" : "Send my review"}
       </button>
       {serverError && <p role="alert" className="review-error">{serverError}</p>}

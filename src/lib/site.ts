@@ -67,7 +67,7 @@ export const site = {
   },
   cta: {
     label: "Book a free 20-minute consultation",
-    href: "/contact",
+    href: "/book",
   },
 } as const;
 

@@ -31,6 +31,11 @@ export const metadata: Metadata = {
 
 const features = [
   {
+    title: "Online booking",
+    line: "Clients pick a free 20-minute slot on the calendar; both sides get a calendar invite, and a slot can never be double-booked.",
+    href: "/book",
+  },
+  {
     title: "A consultation form on every key page",
     line: "Name, email, the pressure point. Every enquiry is emailed to the practice even if the database is down.",
     href: "/contact",
@@ -119,6 +124,9 @@ const fromNeil = [
 ];
 
 const switchOn = [
+  "Switch on online booking: one database script, then a test booking",
+  "Cloudflare Turnstile spam protection on every form",
+  "Sandy answering the office phone: a local number in SCA’s own name",
   "Point sca-za.com to the new site (email stays exactly where it is)",
   "Google Search Console and Bing Webmaster Tools",
   "Confirm the hero video licence",

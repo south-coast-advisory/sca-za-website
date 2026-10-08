@@ -3,6 +3,7 @@ import { getServiceClient } from "@/lib/supabase";
 import { notify } from "@/lib/notify";
 import { buildAnswers, compileReview, reviewQuestions, subjectSlug } from "@/lib/review-form";
 import { site } from "@/lib/site";
+import { clientIp, verifyTurnstile } from "@/lib/turnstile";
 
 export const runtime = "nodejs";
 
@@ -17,6 +18,7 @@ type Payload = {
   answers?: Record<string, string>;
   permission?: boolean;
   website?: string; // honeypot
+  turnstileToken?: string;
 };
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -35,6 +37,8 @@ export async function POST(request: Request) {
     return fail("Invalid request.");
   }
   if (body.website) return NextResponse.json({ ok: true });
+  const human = await verifyTurnstile(body.turnstileToken, clientIp(request));
+  if (!human.ok) return fail(human.error ?? "Please complete the security check.");
 
   const name = body.name?.trim() ?? "";
   const email = body.email?.trim().toLowerCase() ?? "";

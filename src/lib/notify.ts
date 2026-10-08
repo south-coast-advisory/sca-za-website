@@ -25,6 +25,12 @@ export type Notification = {
   body?: string;
   /** Set so Neil can hit reply and answer the person directly. */
   replyTo?: string;
+  /** Send to this address instead of the practice inbox (e.g. a client's confirmation). */
+  to?: string;
+  /** Files attached to the email, e.g. a calendar invite. Content as plain text. */
+  attachments?: { filename: string; content: string; contentType?: string }[];
+  /** Footer line; defaults to the internal "reply to answer them" note. */
+  footer?: string;
 };
 
 /** Email-safe HTML. Inline hex is deliberate: email clients ignore CSS variables. */
@@ -51,7 +57,7 @@ function render(n: Notification): string {
 <p style="margin:0 0 16px;font-size:16px;color:#1b2233"><strong>${escapeHtml(n.subject)}</strong></p>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-size:14px">${rows}</table>
 ${body}
-<p style="margin:24px 0 0;font-size:12px;color:#7a8190">Sent by sca-za.com. Reply to this email to answer them directly.</p>
+<p style="margin:24px 0 0;font-size:12px;color:#7a8190">${escapeHtml(n.footer ?? "Sent by sca-za.com. Reply to this email to answer them directly.")}</p>
 </td></tr></table></td></tr></table></body></html>`;
 }
 
@@ -69,7 +75,7 @@ const renderText = (n: Notification) =>
  */
 export async function notify(n: Notification): Promise<boolean> {
   const key = process.env.RESEND_API_KEY;
-  const to = process.env.NOTIFY_TO_EMAIL;
+  const to = n.to ?? process.env.NOTIFY_TO_EMAIL;
   if (!key || !to) return false;
 
   try {
@@ -83,6 +89,15 @@ export async function notify(n: Notification): Promise<boolean> {
         subject: n.subject,
         html: render(n),
         text: renderText(n),
+        ...(n.attachments?.length
+          ? {
+              attachments: n.attachments.map((a) => ({
+                filename: a.filename,
+                content: Buffer.from(a.content).toString("base64"),
+                ...(a.contentType ? { content_type: a.contentType } : {}),
+              })),
+            }
+          : {}),
       }),
       signal: AbortSignal.timeout(10_000),
     });

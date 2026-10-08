@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getServiceClient } from "@/lib/supabase";
 import { notify } from "@/lib/notify";
+import { clientIp, verifyTurnstile } from "@/lib/turnstile";
 
 export const runtime = "nodejs";
 
@@ -13,6 +14,7 @@ type Payload = {
   source?: string;
   consent?: boolean;
   company?: string; // honeypot — real people never fill this
+  turnstileToken?: string;
 };
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -27,6 +29,9 @@ export async function POST(request: Request) {
 
   // Silently accept bots so they do not retry, but store nothing.
   if (body.company) return NextResponse.json({ ok: true });
+
+  const human = await verifyTurnstile(body.turnstileToken, clientIp(request));
+  if (!human.ok) return NextResponse.json({ ok: false, error: human.error }, { status: 400 });
 
   const name = body.name?.trim() ?? "";
   const email = body.email?.trim().toLowerCase() ?? "";
