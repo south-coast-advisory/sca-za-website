@@ -69,7 +69,9 @@ export function pageMeta({
     console.warn(`[seo] description ${description.length} chars (max 160): ${path}`);
   }
   return {
-    title: fitTitle(title),
+    // The layout's title template does not apply to the root page itself, so the
+    // home page spells its brand suffix out.
+    title: path === "/" ? { absolute: `${title} | ${site.name}` } : fitTitle(title),
     description,
     alternates: { canonical: url },
     openGraph: {

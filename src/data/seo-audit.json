@@ -1,0 +1,411 @@
+{
+ "auditedAt": "2026-10-08T11:29:02.929Z",
+ "total": 35,
+ "score": 100,
+ "sections": [
+  {
+   "name": "Home",
+   "pages": 1,
+   "score": 100
+  },
+  {
+   "name": "Xero",
+   "pages": 2,
+   "score": 100
+  },
+  {
+   "name": "Services",
+   "pages": 9,
+   "score": 100
+  },
+  {
+   "name": "Practice & policies",
+   "pages": 5,
+   "score": 100
+  },
+  {
+   "name": "Resources & answers",
+   "pages": 4,
+   "score": 100
+  },
+  {
+   "name": "Guides",
+   "pages": 8,
+   "score": 100
+  },
+  {
+   "name": "AI tutorials",
+   "pages": 6,
+   "score": 100
+  }
+ ],
+ "checks": [
+  {
+   "label": "Title 30–65 characters",
+   "points": 15,
+   "passed": 35
+  },
+  {
+   "label": "Description 70–165 characters",
+   "points": 15,
+   "passed": 35
+  },
+  {
+   "label": "Exactly one H1",
+   "points": 10,
+   "passed": 35
+  },
+  {
+   "label": "Canonical URL",
+   "points": 10,
+   "passed": 35
+  },
+  {
+   "label": "Share image",
+   "points": 10,
+   "passed": 35
+  },
+  {
+   "label": "Structured data",
+   "points": 10,
+   "passed": 35
+  },
+  {
+   "label": "Images described",
+   "points": 10,
+   "passed": 35
+  },
+  {
+   "label": "250+ words of content",
+   "points": 10,
+   "passed": 35
+  },
+  {
+   "label": "Sub-headings",
+   "points": 5,
+   "passed": 35
+  },
+  {
+   "label": "10+ internal links",
+   "points": 5,
+   "passed": 35
+  }
+ ],
+ "pages": [
+  {
+   "url": "/",
+   "title": "Accountants in Amanzimtoti | South Coast Advisory",
+   "score": 100,
+   "words": 985,
+   "failed": [],
+   "section": "Home",
+   "status": 200
+  },
+  {
+   "url": "/xero",
+   "title": "Xero Partner, KZN South Coast | South Coast Advisory",
+   "score": 100,
+   "words": 1469,
+   "failed": [],
+   "section": "Xero",
+   "status": 200
+  },
+  {
+   "url": "/xero/pricing",
+   "title": "Xero Pricing in South Africa, Explained",
+   "score": 100,
+   "words": 598,
+   "failed": [],
+   "section": "Xero",
+   "status": 200
+  },
+  {
+   "url": "/services",
+   "title": "Accounting, Tax & Payroll Services, Amanzimtoti",
+   "score": 100,
+   "words": 303,
+   "failed": [],
+   "section": "Services",
+   "status": 200
+  },
+  {
+   "url": "/pricing",
+   "title": "What Accounting Costs, and How We Quote",
+   "score": 100,
+   "words": 552,
+   "failed": [],
+   "section": "Practice & policies",
+   "status": 200
+  },
+  {
+   "url": "/resources",
+   "title": "Free Accounting & SARS Resources | South Coast Advisory",
+   "score": 100,
+   "words": 261,
+   "failed": [],
+   "section": "Resources & answers",
+   "status": 200
+  },
+  {
+   "url": "/resources/sars-deadlines",
+   "title": "SARS & CIPC Deadlines: The Recurring Calendar",
+   "score": 100,
+   "words": 694,
+   "failed": [],
+   "section": "Resources & answers",
+   "status": 200
+  },
+  {
+   "url": "/resources/library",
+   "title": "Free Guides, Checklists & Templates | South Coast Advisory",
+   "score": 100,
+   "words": 261,
+   "failed": [],
+   "section": "Guides",
+   "status": 200
+  },
+  {
+   "url": "/resources/ai",
+   "title": "AI for South African Business Owners | South Coast Advisory",
+   "score": 100,
+   "words": 267,
+   "failed": [],
+   "section": "AI tutorials",
+   "status": 200
+  },
+  {
+   "url": "/faq",
+   "title": "Accounting, Tax & SARS Questions Answered",
+   "score": 100,
+   "words": 2076,
+   "failed": [],
+   "section": "Resources & answers",
+   "status": 200
+  },
+  {
+   "url": "/glossary",
+   "title": "Accounting, Tax & SARS Glossary (South Africa)",
+   "score": 100,
+   "words": 3451,
+   "failed": [],
+   "section": "Resources & answers",
+   "status": 200
+  },
+  {
+   "url": "/about",
+   "title": "About the Practice, Amanzimtoti | South Coast Advisory",
+   "score": 100,
+   "words": 369,
+   "failed": [],
+   "section": "Practice & policies",
+   "status": 200
+  },
+  {
+   "url": "/contact",
+   "title": "Contact Us, Amanzimtoti | South Coast Advisory",
+   "score": 100,
+   "words": 250,
+   "failed": [],
+   "section": "Practice & policies",
+   "status": 200
+  },
+  {
+   "url": "/privacy",
+   "title": "Privacy Notice (POPIA) | South Coast Advisory",
+   "score": 100,
+   "words": 979,
+   "failed": [],
+   "section": "Practice & policies",
+   "status": 200
+  },
+  {
+   "url": "/terms",
+   "title": "Terms of Use | South Coast Advisory",
+   "score": 100,
+   "words": 760,
+   "failed": [],
+   "section": "Practice & policies",
+   "status": 200
+  },
+  {
+   "url": "/services/accounting-bookkeeping",
+   "title": "Bookkeeping & Accounting Services, Amanzimtoti",
+   "score": 100,
+   "words": 576,
+   "failed": [],
+   "section": "Services",
+   "status": 200
+  },
+  {
+   "url": "/services/tax",
+   "title": "Tax Practitioner Services, KZN South Coast",
+   "score": 100,
+   "words": 564,
+   "failed": [],
+   "section": "Services",
+   "status": 200
+  },
+  {
+   "url": "/services/payroll",
+   "title": "Payroll Services & EMP201 Submissions | South Coast Advisory",
+   "score": 100,
+   "words": 516,
+   "failed": [],
+   "section": "Services",
+   "status": 200
+  },
+  {
+   "url": "/services/company-secretarial",
+   "title": "CIPC & Company Secretarial Services | South Coast Advisory",
+   "score": 100,
+   "words": 454,
+   "failed": [],
+   "section": "Services",
+   "status": 200
+  },
+  {
+   "url": "/services/advisory-cfo",
+   "title": "Virtual CFO & Business Advisory, KZN | South Coast Advisory",
+   "score": 100,
+   "words": 369,
+   "failed": [],
+   "section": "Services",
+   "status": 200
+  },
+  {
+   "url": "/services/business-valuations",
+   "title": "Business Valuation Services, Durban South",
+   "score": 100,
+   "words": 453,
+   "failed": [],
+   "section": "Services",
+   "status": 200
+  },
+  {
+   "url": "/services/hr",
+   "title": "HR & Employment Support for Small Businesses",
+   "score": 100,
+   "words": 339,
+   "failed": [],
+   "section": "Services",
+   "status": 200
+  },
+  {
+   "url": "/services/property-management",
+   "title": "Property & Body Corporate Management | South Coast Advisory",
+   "score": 100,
+   "words": 363,
+   "failed": [],
+   "section": "Services",
+   "status": 200
+  },
+  {
+   "url": "/resources/library/sars-cipc-deadline-calendar",
+   "title": "The SARS & CIPC Deadline Calendar | South Coast Advisory",
+   "score": 100,
+   "words": 705,
+   "failed": [],
+   "section": "Guides",
+   "status": 200
+  },
+  {
+   "url": "/resources/library/xero-migration-checklist",
+   "title": "Moving to Xero: The Migration Checklist",
+   "score": 100,
+   "words": 759,
+   "failed": [],
+   "section": "Guides",
+   "status": 200
+  },
+  {
+   "url": "/resources/library/month-end-close-checklist",
+   "title": "The Month-End Close Checklist | South Coast Advisory",
+   "score": 100,
+   "words": 736,
+   "failed": [],
+   "section": "Guides",
+   "status": 200
+  },
+  {
+   "url": "/resources/library/payroll-compliance-pack",
+   "title": "The Payroll Compliance Pack | South Coast Advisory",
+   "score": 100,
+   "words": 688,
+   "failed": [],
+   "section": "Guides",
+   "status": 200
+  },
+  {
+   "url": "/resources/library/vat-registration-decision-guide",
+   "title": "Should You Register for VAT? | South Coast Advisory",
+   "score": 100,
+   "words": 803,
+   "failed": [],
+   "section": "Guides",
+   "status": 200
+  },
+  {
+   "url": "/resources/library/record-keeping-guide",
+   "title": "What to Keep, and For How Long | South Coast Advisory",
+   "score": 100,
+   "words": 708,
+   "failed": [],
+   "section": "Guides",
+   "status": 200
+  },
+  {
+   "url": "/resources/library/bbbee-requirements-guide",
+   "title": "B-BBEE: What Your Business Actually Has to Do",
+   "score": 100,
+   "words": 993,
+   "failed": [],
+   "section": "Guides",
+   "status": 200
+  },
+  {
+   "url": "/resources/ai/where-ai-helps-a-small-business",
+   "title": "Where AI actually helps a small business",
+   "score": 100,
+   "words": 614,
+   "failed": [],
+   "section": "AI tutorials",
+   "status": 200
+  },
+  {
+   "url": "/resources/ai/what-never-to-paste-into-ai",
+   "title": "What you must never paste into an AI chatbot",
+   "score": 100,
+   "words": 490,
+   "failed": [],
+   "section": "AI tutorials",
+   "status": 200
+  },
+  {
+   "url": "/resources/ai/ai-prompts-for-business-owners",
+   "title": "Prompts that actually work for a business owner",
+   "score": 100,
+   "words": 598,
+   "failed": [],
+   "section": "AI tutorials",
+   "status": 200
+  },
+  {
+   "url": "/resources/ai/ai-and-your-bookkeeping",
+   "title": "AI and your bookkeeping: what it can and cannot do",
+   "score": 100,
+   "words": 490,
+   "failed": [],
+   "section": "AI tutorials",
+   "status": 200
+  },
+  {
+   "url": "/resources/ai/ai-for-the-annual-workload",
+   "title": "Using AI to survive your annual admin | South Coast Advisory",
+   "score": 100,
+   "words": 486,
+   "failed": [],
+   "section": "AI tutorials",
+   "status": 200
+  }
+ ]
+}

@@ -79,6 +79,40 @@ export default function ContactPage() {
         </div>
       </section>
 
+      <section className="surface">
+        <div className="shell section-tight">
+          <h2>What to bring to the consultation</h2>
+          <p className="lede">
+            None of it is required. Each item lets us say something specific about your position in
+            twenty minutes rather than in general terms.
+          </p>
+          <ul
+            style={{
+              display: "grid",
+              gap: "var(--space-4)",
+              gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 250px), 1fr))",
+              listStyle: "none",
+              margin: "var(--space-6) 0 0",
+              padding: 0,
+            }}
+          >
+            {[
+              ["Latest management accounts or trial balance", "Shows how current the books are and where the margins sit."],
+              ["Last annual financial statements", "The year-end position, and how the business is structured."],
+              ["SARS correspondence", "Any verification, audit letter, penalty or outstanding return on eFiling."],
+              ["VAT and payroll status", "Your VAT category, the last VAT201 and EMP201, and current headcount."],
+              ["CIPC record", "Whether annual returns and the beneficial ownership filing are up to date."],
+              ["The decision in front of you", "Funding, a hire, a new branch, moving to Xero, or selling the business."],
+            ].map(([title, body]) => (
+              <li key={title} className="card">
+                <h3 style={{ fontSize: "var(--text-lg)", marginBottom: "var(--space-1)" }}>{title}</h3>
+                <p style={{ marginBottom: 0, fontSize: "var(--text-sm)" }}>{body}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       <section className="shell section-tight">
         <div style={{ border: "1px solid var(--color-border)" }}>
           <iframe
