@@ -632,12 +632,12 @@ html.is-scrolled .site-header {
   flex-wrap: wrap;
 }
 .site-header__logo { display: block; flex-shrink: 0; }
-.site-header__logo img { width: auto; height: 44px; }
+.site-header__logo img { width: auto; height: 58px; }
 .site-footer__logo { display: inline-block; margin-bottom: var(--space-8); }
 .site-footer__logo img { width: auto; height: 64px; }
 /* Between the phone layout and wide desktop, logo + nav + actions share one row. */
 @media (max-width: 1140px) {
-  .site-header__logo img { height: 38px; }
+  .site-header__logo img { height: 46px; }
   .site-header .nav-disclosure > nav > .nav-list { column-gap: var(--space-4); }
 }
 .header-actions { display: flex; gap: var(--space-3); align-items: center; }
@@ -745,7 +745,7 @@ html.is-scrolled .site-header {
   .header-actions .btn { width: 9.25rem; height: 2.75rem; }
 }
 @media (max-width: 480px) {
-  .site-header__logo img { height: 30px; }
+  .site-header__logo img { height: 40px; }
   .site-footer__logo img { height: 52px; }
 }
 

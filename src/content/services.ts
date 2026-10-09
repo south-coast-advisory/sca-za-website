@@ -214,15 +214,15 @@ export const services: Service[] = [
   },
   {
     slug: "property-management",
-    nav: "Property management",
-    title: "Property & Body Corporate Management",
-    h1: "Levy administration and trust accounting for sectional title schemes and HOAs",
+    nav: "Body corporate management",
+    title: "Body Corporate & HOA Management, KZN South Coast",
+    h1: "Body corporate management: levies, trust accounting, budgets and AGMs",
     description:
-      "Sectional title, home owners association and rental administration with proper trust accounting, on the KZN South Coast.",
+      "Body corporate and HOA management on the KZN South Coast: levy collection, trust accounting, budgets, AGM packs and annual financial statements.",
     answer:
-      "South Coast Advisory administers sectional title schemes, home owners associations and rental portfolios: levy collection, trust accounting, budgets, AGM packs and statutory returns. The accounting side is handled by the same practice that prepares the financial statements, so nothing falls between two service providers.",
+      "South Coast Advisory manages sectional title body corporates and home owners associations on the KZN South Coast: levy collection, trust accounting, administrative and reserve fund budgets, AGM packs and the scheme's annual financial statements. The accounting is done by the same practice that prepares the financial statements, so nothing falls between two service providers. We do not do property sales or rental management.",
     includes: [
-      "Levy and rental collection with monthly statements",
+      "Levy collection with monthly statements to owners",
       "Trust account administration and reconciliation",
       "Scheme budgets and levy calculations",
       "AGM notices, packs and minutes",
@@ -231,7 +231,7 @@ export const services: Service[] = [
     ],
     steps: [
       { step: "Take over", detail: "We take on the scheme's records, bank account and arrears position." },
-      { step: "Run it", detail: "Levies are collected, creditors paid and trustees receive monthly reporting." },
+      { step: "Run it", detail: "Levies are collected, the scheme's creditors are paid and trustees receive monthly reporting." },
       { step: "Account", detail: "Annual financial statements and the AGM pack are prepared in good time." },
     ],
     faqIds: ["body-corporate-accounting", "property-trust-account"],

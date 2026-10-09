@@ -46,8 +46,8 @@ const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     "/api/documents/[slug]/download": ["./private-documents/**"],
     // The share-card route reads these from disk at request time.
-    "/og": ["./src/app/og/*.woff", "./public/brand/og-background.jpg", "./public/brand/logo-white.svg"],
-    "/og/[kicker]/[title]": ["./src/app/og/*.woff", "./public/brand/og-background.jpg", "./public/brand/logo-white.svg"],
+    "/og": ["./src/app/og/*.woff", "./public/brand/og-background.jpg", "./public/brand/logo-original-white.png"],
+    "/og/[kicker]/[title]": ["./src/app/og/*.woff", "./public/brand/og-background.jpg", "./public/brand/logo-original-white.png"],
   },
 
   /** Legacy .html URLs from sca-za.com and sca-za.co.za → new clean URLs. */

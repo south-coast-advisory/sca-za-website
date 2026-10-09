@@ -31,7 +31,7 @@ export default function ServicesPage() {
           <AnswerBlock>
             South Coast Advisory provides bookkeeping and annual financial statements, tax returns
             and SARS representation, payroll and EMP submissions, CIPC company secretarial work,
-            business valuations, virtual CFO advisory, HR administration and property management for
+            business valuations, virtual CFO advisory, HR administration and body corporate management for
             businesses in Amanzimtoti and along the KZN South Coast.
           </AnswerBlock>
         </div>

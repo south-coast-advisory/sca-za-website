@@ -13,11 +13,10 @@ export function Footer() {
       <div className="shell section-tight">
         <Link href="/" aria-label={`${site.name} home`} className="site-footer__logo">
           <Image
-            src="/brand/logo-white.svg"
+            src="/brand/logo-original-white.png"
             alt={`${site.legalName} logo`}
-            width={628}
-            height={124}
-            unoptimized
+            width={373}
+            height={108}
           />
         </Link>
         <div

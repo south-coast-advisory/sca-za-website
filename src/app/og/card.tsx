@@ -30,12 +30,12 @@ export async function renderCard(rawTitle?: string, rawKicker?: string) {
   // one small JPEG (public/brand/og-background.jpg) so the card stays well under
   // WhatsApp's image size limit.
   const [logo, photo, bold, medium] = await Promise.all([
-    asset("brand/logo-white.svg"),
+    asset("brand/logo-original-white.png"),
     asset("brand/og-background.jpg"),
     font(700),
     font(500),
   ]);
-  const logoSrc = `data:image/svg+xml;base64,${logo.toString("base64")}`;
+  const logoSrc = `data:image/png;base64,${logo.toString("base64")}`;
   const photoSrc = `data:image/jpeg;base64,${photo.toString("base64")}`;
   const titleSize = title.length > 70 ? 54 : title.length > 45 ? 64 : 74;
 
@@ -55,7 +55,7 @@ export async function renderCard(rawTitle?: string, rawKicker?: string) {
           }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={logoSrc} alt="" height={92} width={466} />
+          <img src={logoSrc} alt="" height={120} width={414} />
 
           <div style={{ display: "flex", flexDirection: "column", gap: "22px", maxWidth: "940px" }}>
             <div style={{ display: "flex", alignItems: "center", gap: "14px", color: MUTED, fontSize: 24, fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase" }}>

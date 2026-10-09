@@ -304,9 +304,9 @@ export const faqs: Faq[] = [
   {
     id: "property-trust-account",
     group: "Property",
-    q: "Are levies and rentals kept separate from your own money?",
+    q: "Are a scheme's levies kept separate from your own money?",
     a: [
-      "Yes. Money collected on behalf of a scheme or landlord is administered separately from the practice's own funds and reconciled monthly.",
+      "Yes. Levies collected on behalf of a body corporate or HOA are held in the scheme's own account, separate from the practice's funds, and reconciled monthly.",
       "Trustees and owners receive statements showing exactly what was collected, what was paid and what remains.",
     ],
   },
