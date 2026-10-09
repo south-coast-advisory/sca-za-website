@@ -16,13 +16,8 @@ export const site = {
    * Set NEXT_PUBLIC_SITE_URL in the host's environment variables to change it
    * without touching code — e.g. to stage on sca-za.co.za before cutting
    * sca-za.com over. No trailing slash.
-   *
-   * 8 Oct 2026: the primary domain is www.sca-za.co.za. The GoDaddy account
-   * that holds sca-za.com cannot be accessed, so .com cannot be pointed here;
-   * HostGator (which serves sca-za.com today) 301-redirects every .com URL,
-   * path included, to the same path on .co.za. Email stays @sca-za.com.
    */
-  url: process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://www.sca-za.co.za",
+  url: process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://www.sca-za.com",
   tagline: "Accountants and Xero partner in Amanzimtoti since 1980",
   description:
     "South Coast Advisory is an accounting practice in Amanzimtoti, KwaZulu-Natal, and a Xero Silver Partner. We handle bookkeeping, tax, payroll, company secretarial work and business valuations for businesses on the KZN South Coast.",

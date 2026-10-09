@@ -128,7 +128,7 @@ const switchOn = [
   "Switch on online booking: one database script, then a test booking",
   "Cloudflare Turnstile spam protection on every form",
   "Sandy answering the office phone: a local number in SCA’s own name",
-  "Point sca-za.co.za to the new site, and forward every sca-za.com address to it (email stays exactly where it is)",
+  "Point sca-za.com to the new site (email stays exactly where it is)",
   "Google Search Console and Bing Webmaster Tools",
   "Confirm the hero video licence",
 ];
@@ -294,7 +294,7 @@ export default function SiteInfoPage() {
             <strong>What it covers, and what it does not.</strong> The guarantee is about being found:
             rankings and AI answers. It does not promise a number of enquiries, clients or revenue,
             because those also depend on fees, reviews and how each enquiry is followed up. The six
-            months run from the day the new site goes live on sca-za.co.za, and assume the Google Business
+            months run from the day sca-za.com points to the new site, and assume the Google Business
             Profile is linked and client reviews are being collected. Rankings are measured from a
             neutral, signed-out search in the Durban area.
           </p>

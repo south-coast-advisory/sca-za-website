@@ -57,7 +57,7 @@ function render(n: Notification): string {
 <p style="margin:0 0 16px;font-size:16px;color:#1b2233"><strong>${escapeHtml(n.subject)}</strong></p>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-size:14px">${rows}</table>
 ${body}
-<p style="margin:24px 0 0;font-size:12px;color:#7a8190">${escapeHtml(n.footer ?? "Sent by sca-za.co.za. Reply to this email to answer them directly.")}</p>
+<p style="margin:24px 0 0;font-size:12px;color:#7a8190">${escapeHtml(n.footer ?? "Sent by sca-za.com. Reply to this email to answer them directly.")}</p>
 </td></tr></table></td></tr></table></body></html>`;
 }
 
@@ -83,7 +83,7 @@ export async function notify(n: Notification): Promise<boolean> {
       method: "POST",
       headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
       body: JSON.stringify({
-        from: process.env.NOTIFY_FROM_EMAIL ?? "South Coast Advisory <website@sca-za.co.za>",
+        from: process.env.NOTIFY_FROM_EMAIL ?? "South Coast Advisory <website@sca-za.com>",
         to: [to],
         ...(n.replyTo ? { reply_to: n.replyTo } : {}),
         subject: n.subject,

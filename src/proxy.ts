@@ -9,12 +9,12 @@ import type { NextRequest } from "next/server";
  * content. Canonical tags already point at the real domain, but a canonical is
  * a hint — X-Robots-Tag is an instruction.
  *
- * This removes itself: once sca-za.co.za resolves here, the host matches
+ * This removes itself: once sca-za.com resolves here, the host matches
  * NEXT_PUBLIC_SITE_URL and no header is added.
  *
  * Note: Next 16 renamed the `middleware` file convention to `proxy`.
  */
-const SITE_HOST = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.sca-za.co.za")
+const SITE_HOST = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.sca-za.com")
   .replace(/^https?:\/\//, "")
   .replace(/\/$/, "")
   .toLowerCase();
