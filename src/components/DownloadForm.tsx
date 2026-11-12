@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { site, telHref } from "@/lib/site";
+import { useRouter } from "next/navigation";
+import { site } from "@/lib/site";
 
-export function DownloadForm({ slug, title }: { slug: string; title: string }) {
-  const [state, setState] = useState<"idle" | "sending" | "done" | "error">("idle");
+export function DownloadForm({ slug }: { slug: string; title: string }) {
+  const router = useRouter();
+  const [state, setState] = useState<"idle" | "sending" | "error">("idle");
   const [error, setError] = useState("");
-  const [url, setUrl] = useState("");
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -30,38 +31,24 @@ export function DownloadForm({ slug, title }: { slug: string; title: string }) {
         }),
       });
       const json = await res.json();
-      if (!res.ok || !json.ok) {
+      if (!res.ok || !json.ok || typeof json.url !== "string") {
         setError(json.error ?? "Something went wrong.");
         setState("error");
         return;
       }
-      setUrl(json.url);
-      setState("done");
-      // Start the download immediately; the link stays on screen as a fallback.
-      window.location.href = json.url;
+      // A honeypot hit returns a plain library URL. Real readers get a signed
+      // link, and the thank-you page starts the file so the marketing stays on screen.
+      const download = new URL(json.url, window.location.origin);
+      const token = download.pathname.includes("/download") ? download.searchParams.get("t") : null;
+      if (!token) {
+        window.location.href = json.url;
+        return;
+      }
+      router.push(`/resources/library/${slug}/thanks?t=${encodeURIComponent(token)}`);
     } catch {
       setError(`We could not send that. Please phone ${site.phoneDisplay}.`);
       setState("error");
     }
-  }
-
-  if (state === "done") {
-    return (
-      <div className="card" style={{ background: "var(--color-surface)" }}>
-        <h3>Your download is starting</h3>
-        <p>
-          If nothing happens,{" "}
-          <a href={url} download>
-            click here to download {title}
-          </a>
-          . The link works for ten minutes.
-        </p>
-        <p style={{ marginBottom: 0, fontSize: "var(--text-sm)", color: "var(--color-copy-muted)" }}>
-          Questions about anything in it? Phone <a href={telHref}>{site.phoneDisplay}</a> and ask for
-          Neil.
-        </p>
-      </div>
-    );
   }
 
   return (
